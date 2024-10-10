@@ -3,6 +3,7 @@ import { ButtonHeaderStyled, HeaderStyled } from "./Styles";
 
 const HeaderMain = () => {
   const [showHeader, setShowHeader] = useState<boolean>(true);
+
   return (
     <HeaderStyled
       onMouseOut={() => setShowHeader(false)}

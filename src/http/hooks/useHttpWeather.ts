@@ -1,19 +1,27 @@
 import axios from "axios";
-import "dotenv/config";
 
 const useHttpWeather = () => {
-  const url_api = process.env.WEATHER_API_URL;
-  const key_api = process.env.WEATHER_API_KEY;
   const httpWeather = () => {
     return axios.create({
-      baseURL: url_api,
+      baseURL: "http://api.weatherapi.com/v1",
       params: {
-        key: key_api,
+        key: "718afc8ffdc746a681c213104240710",
       },
     });
   };
+
+  const getWeatherForecast = (latitude: number, longetude: number) => {
+    return httpWeather().get("/forecast.json", {
+      params: {
+        q: `${latitude},${longetude}`,
+        lang: "pt",
+      },
+    });
+  };
+
   return {
     httpWeather,
+    getWeatherForecast,
   };
 };
 

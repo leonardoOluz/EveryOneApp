@@ -7,5 +7,8 @@ declare module "styled-components" {
     text: string;
     fontesFamily?: string;
     border: string;
+    fontSizeBig: string;
+    fontSizeMedium: string;
+    fontSizeSmall: string;
   }
 }

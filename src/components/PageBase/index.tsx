@@ -1,15 +1,12 @@
+import { Outlet } from "react-router-dom";
 import FooterMain from "../FooterMain";
 import HeaderMain from "../HeaderMain";
 
-interface PageBaseProps {
-  children?: React.ReactNode;
-}
-
-const PageBase = ({ children }: PageBaseProps) => {
+const PageBase = () => {
   return (
     <>
       <HeaderMain />
-      {children}
+      <Outlet />
       <FooterMain />
     </>
   )
