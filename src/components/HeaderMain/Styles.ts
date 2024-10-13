@@ -9,6 +9,7 @@ export const HeaderStyled = styled.header<{showheader: boolean}>`
   }};
 `;
 
+/* Button sem utilização no momento */
 export const ButtonHeaderStyled = styled.button`
   top: 83px;
   border-radius: 0 0 8px 8px;

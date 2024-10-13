@@ -1,18 +1,24 @@
-import { useState } from "react";
-import { ButtonHeaderStyled, HeaderStyled } from "./Styles";
+import { useEffect, useState } from "react";
+import { HeaderStyled } from "./Styles";
 
 const HeaderMain = () => {
-  const [showHeader, setShowHeader] = useState<boolean>(true);
+  const [isScrolled, setIsScrolled] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+      console.log(window.scrollY)
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <HeaderStyled
-      onMouseOut={() => setShowHeader(false)}
-      onMouseOver={() => setShowHeader(true)}
-      showheader={showHeader}
+      showheader={isScrolled}
     >
-      <ButtonHeaderStyled>
-        {showHeader ? "Esconder" : "Mostrar"}
-      </ButtonHeaderStyled>
       <h1>EveryOne App</h1>
     </HeaderStyled>
   )

@@ -1,18 +1,27 @@
-import { useState } from "react";
-import { ButtonFooterStyled, FooterStyled } from "./Styles";
+import { useEffect, useState } from "react";
+import { FooterStyled } from "./Styles";
 
 const FooterMain = () => {
-  const [showFooter, setShowFooter] = useState<boolean>(true);
+  const [isScrolled, setIsScrolled] = useState(true);
+
+  useEffect(() => {
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > document.documentElement.scrollHeight - window.innerHeight - 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    }
+
+  }, []);
+
 
   return (
     <FooterStyled
-      onMouseOut={() => setShowFooter(false)}
-      onMouseOver={() => setShowFooter(true)}
-      showfooter={showFooter}
+      showfooter={isScrolled}
     >
-      <ButtonFooterStyled>
-        {showFooter ? "Esconder" : "Mostrar"}
-      </ButtonFooterStyled>
       <h1>EveryOne App</h1>
     </FooterStyled>
   )
