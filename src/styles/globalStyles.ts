@@ -1,6 +1,8 @@
 import { createGlobalStyle, css } from "styled-components";
 import { variaveis } from "./IU";
-
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 const GlobalStyle = createGlobalStyle<{ fontAplic?: boolean }>`
 html, body, div, span, applet, object, iframe,
@@ -39,7 +41,7 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
   font-weight: 400;
-  background-color: ${({ theme }) => theme.body};
+  /* background-color: ${({ theme }) => theme.body}; */
   color: ${({ theme }) => theme.text};
 }
 ol, ul {

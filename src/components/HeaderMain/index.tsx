@@ -7,7 +7,6 @@ const HeaderMain = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
-      console.log(window.scrollY)
     };
     window.addEventListener('scroll', handleScroll);
     return () => {
