@@ -37,7 +37,7 @@ export const WeatherStyledTitulo = styled.h1`
 
 export const WeatherImage = styled.img`
   width: 65px;
-  height: 65px;
+  height: 70px;
   border-radius: 8px;
   object-fit: cover;
 `;
@@ -61,8 +61,6 @@ export const WeatherStyledSlider = styled.li`
 
   h3, p {
     font-size: ${({theme}) => theme.fontSizeMedium};
-  }
-  img {
-    width: 100%;
+    align-items: center;
   }
 `;

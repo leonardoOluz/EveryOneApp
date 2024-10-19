@@ -1,8 +1,8 @@
 import { createGlobalStyle, css } from "styled-components";
 import { variaveis } from "./IU";
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const GlobalStyle = createGlobalStyle<{ fontAplic?: boolean }>`
 html, body, div, span, applet, object, iframe,
@@ -70,8 +70,8 @@ export const MainPerson = css`
   align-items: center;
   justify-content: center;
   z-index: 999;
-  background-color: ${({theme}) => theme.inside};
-  border: 0.5px solid ${({theme}) => theme.border};
+  background-color: ${({ theme }) => theme.inside};
+  border: 0.5px solid ${({ theme }) => theme.border};
   transition: transform 0.4s ease-in-out;
 `;
 
@@ -80,8 +80,22 @@ export const ButtonPerson = css`
   position: absolute;
   width: 100px;
   background-color: rgba(0, 0, 0, 0.1);
-  color: ${({theme}) => theme.text};
+  color: ${({ theme }) => theme.text};
   cursor: pointer;
+`;
+
+export const WeatherContainerStyled = css`
+  width: 100%;
+  max-width: 750px;
+  box-sizing: border-box;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  gap: 2rem;
 `;
 
 export default GlobalStyle;
