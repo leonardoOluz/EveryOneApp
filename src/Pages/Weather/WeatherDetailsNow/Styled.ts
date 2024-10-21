@@ -1,8 +1,12 @@
 import styled from "styled-components";
-import { WeatherContainerStyled } from "../../../styles/globalStyles";
+import {
+  WeatherContainerStandard,
+  WeatherContainerStyled,
+} from "../../../styles/globalStyles";
 
 export const WeatherStyledContainerNow = styled.div`
- ${WeatherContainerStyled}
+  ${WeatherContainerStyled}
+  ${WeatherContainerStandard}
   .Details {
     display: flex;
     align-items: center;
@@ -26,8 +30,3 @@ export const WeatherStyledContainerNow = styled.div`
   }
 `;
 
-export const WeatherStyledTitleNow = styled.h2`
-  text-align: center;
-  padding: 1rem;
-  font-size: ${({ theme }) => theme.fontSizeBig};
-`;

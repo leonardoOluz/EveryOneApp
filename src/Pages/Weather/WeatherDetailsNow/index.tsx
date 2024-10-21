@@ -1,19 +1,17 @@
-import { WeatherImage } from "../Styled";
-import { WeatherStyledContainerNow, WeatherStyledTitleNow } from "./Styled";
+import { WeatherStyledContainerNow } from "./Styled";
 import { PiWind } from "react-icons/pi";
 import { WiHumidity } from "react-icons/wi";
 import { GiWaterSplash } from "react-icons/gi";
-import { ICurrent, ILocation } from "../../../Interfaces/Weather";
+import { ICurrent } from "../../../Interfaces/Weather";
+import { WeatherImage } from "../../../styles/globalStyles";
 
 interface IWeatherDatailsDayProps {
     current?: ICurrent;
-    locantion?: ILocation;
 }
 
-const WeatherDatailsNow = ({ current, locantion }: IWeatherDatailsDayProps) => {
+const WeatherDatailsNow = ({ current }: IWeatherDatailsDayProps) => {
     return (
         <WeatherStyledContainerNow>
-            <WeatherStyledTitleNow>{locantion?.region}</WeatherStyledTitleNow>
             <div className="Details">
                 <h2><strong>+</strong>{current?.temp_c}°C</h2>
                 <figure>
@@ -32,7 +30,7 @@ const WeatherDatailsNow = ({ current, locantion }: IWeatherDatailsDayProps) => {
                 </figure>
                 <figure>
                     <GiWaterSplash size={45} />
-                    <span>{current?.precip_mm} mm Hg</span>
+                    <span>{current?.precip_mm ? (current?.precip_mm * 100) : 0} mm</span>
                 </figure>
             </div>
         </WeatherStyledContainerNow>

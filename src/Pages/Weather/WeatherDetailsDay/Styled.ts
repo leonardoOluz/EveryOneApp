@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { WeatherContainerStyled } from "../../../styles/globalStyles";
+import { WeatherContainerStandard, WeatherContainerStyled } from "../../../styles/globalStyles";
 
 export const WeatherDetailsDayStyled = styled.div`
   ${WeatherContainerStyled}
+  ${WeatherContainerStandard}
   
   opacity: 0;
   transform: translateY(50px);

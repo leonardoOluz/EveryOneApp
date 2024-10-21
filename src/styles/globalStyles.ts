@@ -3,6 +3,7 @@ import { variaveis } from "./IU";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle<{ fontAplic?: boolean }>`
 html, body, div, span, applet, object, iframe,
@@ -92,10 +93,28 @@ export const WeatherContainerStyled = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
   gap: 2rem;
+`;
+
+export const WeatherContainerStandard = css`
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+`;
+
+export const WeatherImage = styled.img`
+  width: 65px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+`;
+
+export const WeatherStyledTitleLocal = styled.div`
+  ${WeatherContainerStandard}
+  ${WeatherContainerStyled}
+  text-align: center;
+  padding: 1rem;
+  font-size: ${({ theme }) => theme.fontSizeBig};
 `;
 
 export default GlobalStyle;
