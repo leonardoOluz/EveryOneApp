@@ -1,5 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import {
+  useQuery,
+} from "@tanstack/react-query";
+import axios, {  } from "axios";
 import { IData } from "../../Interfaces/Weather";
 
 const useHttpWeather = () => {

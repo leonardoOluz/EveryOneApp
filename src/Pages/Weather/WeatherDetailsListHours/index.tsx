@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Scrollbar } from "swiper/modules"
 import { useEffect, useState } from "react";
-import { setDateHoursMinute } from "../../../utils/weather/setDate";
+import { setDateHoursMinute } from "../../../utils/weather";
 import { useResize } from "../../../hooks/WeatherSet";
 import { IHours } from "../../../Interfaces/Weather";
 import { WeatherStyledListHours, WeatherStyledSlider } from "./Styled";

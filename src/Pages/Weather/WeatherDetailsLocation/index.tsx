@@ -1,6 +1,6 @@
 import { ILocation } from "../../../Interfaces/Weather";
 import { WeatherStyledTitleLocal } from "../../../styles/globalStyles";
-import { setDateNow } from "../../../utils/weather/setDate";
+import { setDateNow } from "../../../utils/weather";
 import { WeatherLocalization } from "./Styled";
 
 interface IWeatherDetailsLocationProps {

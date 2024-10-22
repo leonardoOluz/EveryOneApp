@@ -87,3 +87,4 @@ export const useResize = (): number => {
   return slidesPerView;
 
 };
+

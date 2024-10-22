@@ -4,10 +4,13 @@ import {
   WeatherContainerStyled,
 } from "../../styles/globalStyles";
 
-export const WeaterStyledMain = styled.main`
+export const WeaterStyledMain = styled.main<{ imageWeather: string }>`
   box-sizing: border-box;
   height: auto;
-  background-image: url("../src/assets/images/weather/skyNightClean.jpg");
+  background-image: ${({ imageWeather }) =>
+    imageWeather
+      ? `url("../src/assets/images/weather/${imageWeather}.jpg")`
+      : `url("../src/assets/images/weather/day/skyBlue.jpg")`};
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;

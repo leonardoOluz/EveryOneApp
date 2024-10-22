@@ -1,5 +1,5 @@
 import { createGlobalStyle, css } from "styled-components";
-import { variaveis } from "./IU";
+import { styledVariable } from "./IU";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
@@ -37,7 +37,7 @@ body {
     if (fontAplic) {
       return theme.fontesFamily;
     }
-    return variaveis.fontesFamily.primary;
+    return styledVariable.fontesFamily.primary;
   }};
   font-optical-sizing: auto;
   font-style: normal;

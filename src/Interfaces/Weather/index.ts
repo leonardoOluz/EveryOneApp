@@ -72,7 +72,7 @@ export interface IForecastday {
   astro: IAstro;
   date: Date;
   day: IDay;
-  hour: IHours[]
+  hour: IHours[];
 }
 export interface IAstro {
   sunset?: string;
@@ -80,4 +80,12 @@ export interface IAstro {
   moon_phase?: string;
   is_moon_up?: number;
   is_sun_up?: number;
+}
+
+export interface IImagesVariables {
+  skyBlue: string;
+  skyCloudy: string;
+  skyCloudyTotal: string;
+  skyCloudyRainEasy: string;
+  skyCloudyRainHard: string;
 }
