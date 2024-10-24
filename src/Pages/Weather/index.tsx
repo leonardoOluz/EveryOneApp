@@ -33,25 +33,31 @@ const Weather = () => {
 
   }, [longetude, latitude, loading, coords, data?.data])
 
-  if (isLoading && data !== undefined) {
+  if (isLoading && !data && !image) {
     return <Loader />
   }
 
-  return (<WeaterStyledMain imageWeather={image || ""}>
-    <WeatherStyledTitulo>Clima Tempo EveryOne-App</WeatherStyledTitulo>
-    <WeatherStyledSection>
+  return (
+    <WeaterStyledMain imageWeather={image || ""} night={data?.data.current?.is_day}>
+      <WeatherStyledTitulo night={data?.data.current?.is_day}>Clima Tempo EveryOne-App</WeatherStyledTitulo>
+      <WeatherStyledSection>
+        {data?.data ? (
+          <>
+            <WeatherDetailsLocation location={data?.data.location} />
 
-      <WeatherDetailsLocation location={data?.data.location} />
+            <WeatherDatailsNow current={data?.data.current} />
 
-      <WeatherDatailsNow current={data?.data.current} />
+            <WeatherDetailsListHours
+              night={data?.data.current?.is_day}
+              hours={data?.data.forecast.forecastday[0].hour}
+            />
 
-      <WeatherDetailsListHours hours={data?.data.forecast.forecastday[0].hour || []} />
+            <WeatherDetailsDay day={data?.data.forecast.forecastday[0].day} />
+          </>
+        ) : <Loader />}
+      </WeatherStyledSection>
 
-      <WeatherDetailsDay day={data?.data.forecast.forecastday[0].day} />
-
-    </WeatherStyledSection>
-
-  </WeaterStyledMain>)
+    </WeaterStyledMain>)
 };
 
 export default Weather;

@@ -1,5 +1,5 @@
 import { ICurrent } from "../../Interfaces/Weather";
-import { imagesDay, imagesNight } from "../../styles/IU";
+import { imagesDay, imagesNight } from "../../styles/weatherStyles/IU";
 
 export function setDateHoursMinute(date: Date): string {
   const apiDate = new Date(date);

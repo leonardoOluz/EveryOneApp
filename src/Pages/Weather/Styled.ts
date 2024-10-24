@@ -1,16 +1,18 @@
 import styled from "styled-components";
-import {
-  WeatherContainerStandard,
-  WeatherContainerStyled,
-} from "../../styles/globalStyles";
+import { fadeIn } from "../../styles/globalStyles";
 
-export const WeaterStyledMain = styled.main<{ imageWeather: string }>`
+export const WeaterStyledMain = styled.main<{
+  imageWeather: string;
+  night: number | undefined;
+}>`
   box-sizing: border-box;
   height: auto;
   background-image: ${({ imageWeather }) =>
     imageWeather
       ? `url("../src/assets/images/weather/${imageWeather}.jpg")`
-      : `url("../src/assets/images/weather/day/skyBlue.jpg")`};
+      : ``};
+  animation: ${({ imageWeather }) => (imageWeather ? fadeIn : "")} 2s
+    ease-in;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -20,6 +22,8 @@ export const WeaterStyledMain = styled.main<{ imageWeather: string }>`
   gap: 5rem;
   margin: 0 auto;
   padding: 5rem 0;
+  opacity: ${({ imageWeather }) => (imageWeather ? 1 : 0)};
+  ${({ night, theme }) => (!night ? "color: white" : `color: ${theme.text}`)}
 `;
 
 export const WeatherStyledSection = styled.section`
@@ -31,12 +35,10 @@ export const WeatherStyledSection = styled.section`
   align-items: center;
 `;
 
-export const WeatherStyledTitulo = styled.h1`
+export const WeatherStyledTitulo = styled.h1<{ night: number | undefined }>`
   text-align: center;
-  color: ${({ theme }) => theme.text};
-  font-size: ${({ theme }) => theme.fontSizeBig};
+  ${({ night, theme }) => (!night ? "color: white" : `color: ${theme.text}`)}
   font-weight: 800;
   padding: 0.5rem 1rem;
-  ${WeatherContainerStandard}
-  ${WeatherContainerStyled}
+  font-size: ${({ theme }) => theme.fontSizeTitle};
 `;

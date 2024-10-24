@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { WeatherContainerStandard, WeatherContainerStyled } from "../../../styles/globalStyles";
+import { WeatherContainerStandard, WeatherContainerStyled } from "../../../styles/weatherStyles/globalStyles";
 
 export const WeatherDetailsDayStyled = styled.div`
   ${WeatherContainerStyled}

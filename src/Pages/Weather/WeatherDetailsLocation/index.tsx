@@ -1,20 +1,19 @@
 import { ILocation } from "../../../Interfaces/Weather";
-import { WeatherStyledTitleLocal } from "../../../styles/globalStyles";
 import { setDateNow } from "../../../utils/weather";
-import { WeatherLocalization } from "./Styled";
+import { WeatherLocalization, WeatherLocalizationContainer } from "./Styled";
 
 interface IWeatherDetailsLocationProps {
-    location?: ILocation
+    location: ILocation
 }
 
 const WeatherDetailsLocation = ({location}: IWeatherDetailsLocationProps) => {
     return (
-        <WeatherStyledTitleLocal>
+        <WeatherLocalizationContainer>
             <h2>{location?.name}</h2>
             <WeatherLocalization>
                 {setDateNow(location?.localtime || new Date())}
             </WeatherLocalization>
-        </WeatherStyledTitleLocal>
+        </WeatherLocalizationContainer>
     )
 };
 

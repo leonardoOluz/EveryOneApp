@@ -3,10 +3,10 @@ import { PiWind } from "react-icons/pi";
 import { WiHumidity } from "react-icons/wi";
 import { GiWaterSplash } from "react-icons/gi";
 import { ICurrent } from "../../../Interfaces/Weather";
-import { WeatherImage } from "../../../styles/globalStyles";
+import { WeatherImage } from "../../../styles/weatherStyles/globalStyles";
 
 interface IWeatherDatailsDayProps {
-    current?: ICurrent;
+    current: ICurrent;
 }
 
 const WeatherDatailsNow = ({ current }: IWeatherDatailsDayProps) => {

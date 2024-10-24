@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {
   WeatherContainerStandard,
   WeatherContainerStyled,
-} from "../../../styles/globalStyles";
+} from "../../../styles/weatherStyles/globalStyles";
 
 export const WeatherStyledContainerNow = styled.div`
   ${WeatherContainerStyled}
@@ -29,4 +29,3 @@ export const WeatherStyledContainerNow = styled.div`
     }
   }
 `;
-

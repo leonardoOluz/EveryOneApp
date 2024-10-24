@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { HeaderStyled } from "./Styles";
+import LogoSpringTrail from "../LogoSpringTrail";
 
 const HeaderMain = () => {
   const [isScrolled, setIsScrolled] = useState(true);
@@ -18,7 +19,7 @@ const HeaderMain = () => {
     <HeaderStyled
       showheader={isScrolled}
     >
-      <h1>EveryOne App</h1>
+      <LogoSpringTrail />
     </HeaderStyled>
   )
 }

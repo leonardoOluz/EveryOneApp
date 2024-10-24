@@ -4,7 +4,7 @@ import { useWeatherScrollObserver } from "../../../hooks/WeatherSet";
 import { IDay } from "../../../Interfaces/Weather";
 
 interface IWeatherDetailsDayProps {
-  day?: IDay
+  day: IDay
 }
 
 const WeatherDetailsDay = ({ day }: IWeatherDetailsDayProps) => {

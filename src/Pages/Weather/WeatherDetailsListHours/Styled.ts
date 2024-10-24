@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { WeatherContainerStandard } from "../../../styles/globalStyles";
+import { WeatherContainerStandard } from "../../../styles/weatherStyles/globalStyles";
 
 export const WeatherStyledListHours = styled.ul`
   width: 80%;
@@ -7,8 +7,8 @@ export const WeatherStyledListHours = styled.ul`
   margin: 1rem auto;
 `;
 
-export const WeatherStyledSlider = styled.li`
-  color: ${({ theme }) => theme.text};
+export const WeatherStyledSlider = styled.li<{night: number | undefined}>`
+  ${({night, theme}) => !night ? "color: white": `color: ${theme.text}`}
   display: flex;
   flex-direction: column;
   align-items: center;

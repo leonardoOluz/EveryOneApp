@@ -1,9 +1,8 @@
-import { createGlobalStyle, css } from "styled-components";
+import  { createGlobalStyle, css, keyframes } from "styled-components";
 import { styledVariable } from "./IU";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle<{ fontAplic?: boolean }>`
 html, body, div, span, applet, object, iframe,
@@ -66,14 +65,15 @@ export const MainPerson = css`
   position: fixed;
   left: 0;
   right: 0;
-  padding: 2rem 0;
+  padding: 2rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 999;
   background-color: ${({ theme }) => theme.inside};
-  border: 0.5px solid ${({ theme }) => theme.border};
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.4s ease-in-out;
+  @media screen and (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 export const ButtonPerson = css`
@@ -85,36 +85,15 @@ export const ButtonPerson = css`
   cursor: pointer;
 `;
 
-export const WeatherContainerStyled = css`
-  width: 100%;
-  max-width: 750px;
-  box-sizing: border-box;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-`;
-
-export const WeatherContainerStandard = css`
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-`;
-
-export const WeatherImage = styled.img`
-  width: 65px;
-  height: 70px;
-  border-radius: 8px;
-  object-fit: cover;
-`;
-
-export const WeatherStyledTitleLocal = styled.div`
-  ${WeatherContainerStandard}
-  ${WeatherContainerStyled}
-  text-align: center;
-  padding: 1rem;
-  font-size: ${({ theme }) => theme.fontSizeBig};
+/* KeyFrames utils */
+export const fadeIn = keyframes`
+  from{
+    opacity: 0;
+    transform: translateY(5px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 export default GlobalStyle;
