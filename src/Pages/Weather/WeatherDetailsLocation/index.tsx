@@ -9,7 +9,7 @@ interface IWeatherDetailsLocationProps {
 const WeatherDetailsLocation = ({location}: IWeatherDetailsLocationProps) => {
     return (
         <WeatherLocalizationContainer>
-            <h2>{location?.name}</h2>
+            <h2>Tempo agora em {location?.name}</h2>
             <WeatherLocalization>
                 {setDateNow(location?.localtime || new Date())}
             </WeatherLocalization>

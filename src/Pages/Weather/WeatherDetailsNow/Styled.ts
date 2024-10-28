@@ -27,5 +27,8 @@ export const WeatherStyledContainerNow = styled.div`
         font-size: ${({ theme }) => theme.fontSizeMedium};
       }
     }
+    p {
+      font-size: ${({ theme }) => theme.fontSizeMedium};
+    }
   }
 `;

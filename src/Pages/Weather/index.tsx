@@ -13,7 +13,7 @@ import Loader from "../../components/Loader";
 import { useGeolocation } from "../../hooks/WeatherSet";
 import WeatherDetailsListHours from "./WeatherDetailsListHours";
 import WeatherDetailsLocation from "./WeatherDetailsLocation";
-import { backgroudImageWeather } from "../../utils/weather";
+import { backgroudImageWeather, toggleColor } from "../../utils/weather";
 
 const Weather = () => {
   const { coords, loading } = useGeolocation();
@@ -38,26 +38,32 @@ const Weather = () => {
   }
 
   return (
-    <WeaterStyledMain imageWeather={image || ""} night={data?.data.current?.is_day}>
-      <WeatherStyledTitulo night={data?.data.current?.is_day}>Clima Tempo EveryOne-App</WeatherStyledTitulo>
-      <WeatherStyledSection>
-        {data?.data ? (
-          <>
-            <WeatherDetailsLocation location={data?.data.location} />
+    <>
+      {data?.data && image ? (
+        <WeaterStyledMain
+          imageWeather={image}
+          toggleColor={toggleColor(data?.data.current?.is_day, image)} >
+          <WeatherStyledSection>
+            <>
+              <WeatherStyledTitulo toggleColor={toggleColor(data?.data.current?.is_day, image)}>Clima Tempo EveryOne-App</WeatherStyledTitulo>
+              <WeatherDetailsLocation location={data?.data.location} />
+              <WeatherDatailsNow current={data?.data.current} />
+              <WeatherDetailsListHours
+                toggleColor={toggleColor(data?.data.current?.is_day, image)}
+                hours={data?.data.forecast.forecastday[0].hour}
+              />
+              <WeatherDetailsDay
+                day={data?.data.forecast.forecastday[0].day}
+                location={data?.data.location}
+                toggleColor={toggleColor(data?.data.current?.is_day, image)}
+              />
 
-            <WeatherDatailsNow current={data?.data.current} />
-
-            <WeatherDetailsListHours
-              night={data?.data.current?.is_day}
-              hours={data?.data.forecast.forecastday[0].hour}
-            />
-
-            <WeatherDetailsDay day={data?.data.forecast.forecastday[0].day} />
-          </>
-        ) : <Loader />}
-      </WeatherStyledSection>
-
-    </WeaterStyledMain>)
+            </>
+          </WeatherStyledSection>
+        </WeaterStyledMain >
+      )
+        : <Loader />}
+    </>)
 };
 
 export default Weather;

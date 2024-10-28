@@ -10,10 +10,10 @@ import { WeatherImage } from "../../../styles/weatherStyles/globalStyles";
 
 interface IWeatherDetailsListHoursProps {
   hours: IHours[]
-  night: number | undefined
+  toggleColor: boolean
 }
 
-const WeatherDetailsListHours = ({ hours, night }: IWeatherDetailsListHoursProps) => {
+const WeatherDetailsListHours = ({ hours, toggleColor }: IWeatherDetailsListHoursProps) => {
   const numberSlides = useResize();
   const [slidesPerView, setSlidesPerView] = useState<number>(9)
 
@@ -33,7 +33,7 @@ const WeatherDetailsListHours = ({ hours, night }: IWeatherDetailsListHoursProps
       >
         {hours.map((hour, index) => (
           <SwiperSlide key={index}>
-            <WeatherStyledSlider night={night}>
+            <WeatherStyledSlider toggleColor={toggleColor}>
               <h3>{setDateHoursMinute(hour.time!)}</h3>
               <WeatherImage src={hour.condition?.icon} alt="icone do tempo horario referido" />
               <p>+{hour.temp_c}°C</p>

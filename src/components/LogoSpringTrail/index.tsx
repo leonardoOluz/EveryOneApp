@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTrail } from '@react-spring/web'
 import { BackBox, Box, Container, FrontBox } from './Styled'
 
-const items = ['E', 'V', 'E', 'R', 'Y', ' ', 'O', 'N', 'E', ' ', 'A', 'P', 'P']
+const items = ['E', 'V', 'E', 'R', 'Y', 'O', 'N', 'E', ' ', 'A', 'P', 'P']
 
 const LogoSpringTrail = () => {
   const [isFlipped, setIsFlipped] = useState(false)

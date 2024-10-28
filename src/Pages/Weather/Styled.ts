@@ -3,7 +3,7 @@ import { fadeIn } from "../../styles/globalStyles";
 
 export const WeaterStyledMain = styled.main<{
   imageWeather: string;
-  night: number | undefined;
+  toggleColor: boolean;
 }>`
   box-sizing: border-box;
   height: auto;
@@ -11,8 +11,7 @@ export const WeaterStyledMain = styled.main<{
     imageWeather
       ? `url("../src/assets/images/weather/${imageWeather}.jpg")`
       : ``};
-  animation: ${({ imageWeather }) => (imageWeather ? fadeIn : "")} 2s
-    ease-in;
+  animation: ${({ imageWeather }) => (imageWeather ? fadeIn : "")} 2s ease-in;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -23,7 +22,8 @@ export const WeaterStyledMain = styled.main<{
   margin: 0 auto;
   padding: 5rem 0;
   opacity: ${({ imageWeather }) => (imageWeather ? 1 : 0)};
-  ${({ night, theme }) => (!night ? "color: white" : `color: ${theme.text}`)}
+  ${({ toggleColor, theme }) =>
+    toggleColor ? "color: white" : `color: ${theme.text}`}
 `;
 
 export const WeatherStyledSection = styled.section`
@@ -33,11 +33,13 @@ export const WeatherStyledSection = styled.section`
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  /* overflow-y: auto; */
+  /* scrollbar-width: none; */
 `;
 
-export const WeatherStyledTitulo = styled.h1<{ night: number | undefined }>`
+export const WeatherStyledTitulo = styled.h1<{ toggleColor: boolean }>`
   text-align: center;
-  ${({ night, theme }) => (!night ? "color: white" : `color: ${theme.text}`)}
+  ${({ toggleColor, theme }) => (toggleColor ? "color: white" : `color: ${theme.text}`)}
   font-weight: 800;
   padding: 0.5rem 1rem;
   font-size: ${({ theme }) => theme.fontSizeTitle};

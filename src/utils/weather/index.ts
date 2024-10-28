@@ -13,11 +13,7 @@ export function setDateHoursMinute(date: Date): string {
 export function setDateNow(date: Date): string {
   const apiDate = new Date(date);
   const day = apiDate.toLocaleString("pt-BR", {
-    year: "numeric",
-    month: "long",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
+    formatMatcher: "best fit",
   });
 
   return `${day}`;
@@ -43,4 +39,28 @@ export function backgroudImageWeather(current: ICurrent): string {
   }
 
   return images.skyBlue;
+}
+
+export function toggleColor(day: number, image: string): boolean {
+  let isRain: boolean = false;
+  isRain =
+    day === 0 ||
+    image.includes(imagesDay.skyCloudyRainEasy) ||
+    image.includes(imagesDay.skyCloudyRainHard)
+      ? true
+      : false;
+  return isRain;
+}
+
+export function setDateDayMonth(date: Date): string {
+  const dayMounth = new Date(date).toLocaleString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+  });
+
+  return dayMounth;
+}
+
+export function setTotalPrecipMm(precip: number): string {
+  return `${precip * 100} mm`
 }

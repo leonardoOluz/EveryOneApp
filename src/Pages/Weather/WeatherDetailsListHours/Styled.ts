@@ -7,8 +7,8 @@ export const WeatherStyledListHours = styled.ul`
   margin: 1rem auto;
 `;
 
-export const WeatherStyledSlider = styled.li<{night: number | undefined}>`
-  ${({night, theme}) => !night ? "color: white": `color: ${theme.text}`}
+export const WeatherStyledSlider = styled.li<{toggleColor: boolean}>`
+  ${({toggleColor, theme}) => toggleColor ? "color: white": `color: ${theme.text}`}
   display: flex;
   flex-direction: column;
   align-items: center;

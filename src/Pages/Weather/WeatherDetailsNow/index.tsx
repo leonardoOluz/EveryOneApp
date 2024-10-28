@@ -4,6 +4,7 @@ import { WiHumidity } from "react-icons/wi";
 import { GiWaterSplash } from "react-icons/gi";
 import { ICurrent } from "../../../Interfaces/Weather";
 import { WeatherImage } from "../../../styles/weatherStyles/globalStyles";
+import { setTotalPrecipMm } from "../../../utils/weather";
 
 interface IWeatherDatailsDayProps {
     current: ICurrent;
@@ -26,11 +27,11 @@ const WeatherDatailsNow = ({ current }: IWeatherDatailsDayProps) => {
                 </figure>
                 <figure>
                     <WiHumidity size={45} />
-                    <span>{current?.humidity}%</span>
+                    <span>{current?.humidity} %</span>
                 </figure>
                 <figure>
                     <GiWaterSplash size={45} />
-                    <span>{current?.precip_mm ? (current?.precip_mm * 100) : 0} mm</span>
+                    <span>{setTotalPrecipMm(current?.precip_mm)}</span>
                 </figure>
             </div>
         </WeatherStyledContainerNow>
