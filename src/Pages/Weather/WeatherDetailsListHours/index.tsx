@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Scrollbar } from "swiper/modules"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { setDateHoursMinute } from "../../../utils/weather";
-import { useResize } from "../../../hooks/WeatherSet";
+import { useResize, useWeatherScrollObserver } from "../../../hooks/WeatherSet";
 import { IHours } from "../../../Interfaces/Weather";
 import { WeatherStyledListHours, WeatherStyledSlider } from "./Styled";
 import { WeatherImage } from "../../../styles/weatherStyles/globalStyles";
@@ -17,6 +17,9 @@ const WeatherDetailsListHours = ({ hours, toggleColor }: IWeatherDetailsListHour
   const numberSlides = useResize();
   const [slidesPerView, setSlidesPerView] = useState<number>(9)
 
+  const elementRef = useRef(null)
+  useWeatherScrollObserver(elementRef, "show");
+
   useEffect(() => {
     setSlidesPerView(numberSlides)
   }, [numberSlides])
@@ -24,7 +27,7 @@ const WeatherDetailsListHours = ({ hours, toggleColor }: IWeatherDetailsListHour
 
 
   return (
-    <WeatherStyledListHours>
+    <WeatherStyledListHours ref={elementRef}>
       <Swiper
         modules={[Pagination, Scrollbar]}
         spaceBetween={10}

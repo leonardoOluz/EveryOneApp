@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import {
+  hidden,
+  show,
   WeatherContainerStandard,
   WeatherContainerStyled,
 } from "../../../styles/weatherStyles/globalStyles";
@@ -7,18 +9,14 @@ import {
 export const WeatherDetailsDayStyled = styled.div`
   ${WeatherContainerStyled}
   ${WeatherContainerStandard}
+  ${hidden}
   
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-
   h2 {
     font-size: ${({ theme }) => theme.fontSizeMedium};
   }
 
   &.show {
-    opacity: 1;
-    transform: translateY(0);
+    ${show}
   }
 `;
 
@@ -27,7 +25,7 @@ export const WeatherFigureDayStyled = styled.div`
   align-items: center;
   gap: 1rem;
   h3 {
-    font-size: ${({theme}) => theme.fontSizeMedium};
+    font-size: ${({ theme }) => theme.fontSizeMedium};
   }
 `;
 

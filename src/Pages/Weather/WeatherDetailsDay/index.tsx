@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { WeatherDetailsDayContainer, WeatherDetailsDayStyled, WeatherFigureDayStyled, WeatherListaDetailsDayStyled } from "./Styled";
 import { useWeatherScrollObserver } from "../../../hooks/WeatherSet";
-import { IDay, ILocation } from "../../../Interfaces/Weather";
+import { IDay } from "../../../Interfaces/Weather";
 import { setDateDayMonth, setTotalPrecipMm } from "../../../utils/weather";
 import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import { CiDroplet } from "react-icons/ci";
@@ -9,16 +9,16 @@ import { WiHumidity } from "react-icons/wi";
 import { WeatherImage } from "../../../styles/weatherStyles/globalStyles";
 interface IWeatherDetailsDayProps {
   day: IDay;
-  location: ILocation;
-  toggleColor: boolean
+  toggleColor: boolean;
+  date: Date;
 }
 
-const WeatherDetailsDay = ({ day, location, toggleColor }: IWeatherDetailsDayProps) => {
+const WeatherDetailsDay = ({ day, toggleColor, date }: IWeatherDetailsDayProps) => {
   const elementRef = useRef<HTMLDivElement>(null)
   useWeatherScrollObserver(elementRef, "show");
 
   return <WeatherDetailsDayStyled ref={elementRef}>
-    <h2>Previsão para Hoje {setDateDayMonth(location.localtime!)}</h2>
+    <h2>Previsão para {setDateDayMonth(date)}</h2>
     <WeatherFigureDayStyled>
       <h3>{day?.condition.text}</h3>
       <figure>

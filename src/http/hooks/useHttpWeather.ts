@@ -17,6 +17,7 @@ const useHttpWeather = () => {
       params: {
         q: `${latitude},${longetude}`,
         lang: "pt",
+        days: 10,
       },
     });
   };

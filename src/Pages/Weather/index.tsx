@@ -44,21 +44,22 @@ const Weather = () => {
           imageWeather={image}
           toggleColor={toggleColor(data?.data.current?.is_day, image)} >
           <WeatherStyledSection>
-            <>
-              <WeatherStyledTitulo toggleColor={toggleColor(data?.data.current?.is_day, image)}>Clima Tempo EveryOne-App</WeatherStyledTitulo>
-              <WeatherDetailsLocation location={data?.data.location} />
-              <WeatherDatailsNow current={data?.data.current} />
-              <WeatherDetailsListHours
-                toggleColor={toggleColor(data?.data.current?.is_day, image)}
-                hours={data?.data.forecast.forecastday[0].hour}
-              />
-              <WeatherDetailsDay
-                day={data?.data.forecast.forecastday[0].day}
-                location={data?.data.location}
-                toggleColor={toggleColor(data?.data.current?.is_day, image)}
-              />
-
-            </>
+            <WeatherStyledTitulo toggleColor={toggleColor(data?.data.current?.is_day, image)}>Clima Tempo EveryOne-App</WeatherStyledTitulo>
+            <WeatherDetailsLocation location={data?.data.location} />
+            <WeatherDatailsNow current={data?.data.current} />
+            {data?.data.forecast.forecastday.map((clima) => (
+              <>
+                <WeatherDetailsDay
+                  day={clima.day}
+                  date={clima.date}
+                  toggleColor={toggleColor(data?.data.current?.is_day, image)}
+                />
+                <WeatherDetailsListHours
+                  toggleColor={toggleColor(data?.data.current?.is_day, image)}
+                  hours={clima.hour}
+                />
+              </>
+            ))}
           </WeatherStyledSection>
         </WeaterStyledMain >
       )

@@ -1,6 +1,16 @@
 import { ICurrent } from "../../Interfaces/Weather";
 import { imagesDay, imagesNight } from "../../styles/weatherStyles/IU";
 
+export function setDateDayMonth(date: Date): string {
+  const dayMounth = new Date(date + " 00:00")
+  .toLocaleString("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    day: "2-digit",
+    month: "2-digit",
+  });
+
+  return dayMounth;
+}
 export function setDateHoursMinute(date: Date): string {
   const apiDate = new Date(date);
   const hour = apiDate.getHours();
@@ -52,15 +62,6 @@ export function toggleColor(day: number, image: string): boolean {
   return isRain;
 }
 
-export function setDateDayMonth(date: Date): string {
-  const dayMounth = new Date(date).toLocaleString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-  });
-
-  return dayMounth;
-}
-
 export function setTotalPrecipMm(precip: number): string {
-  return `${precip * 100} mm`
+  return `${precip.toString()} mm`;
 }

@@ -23,3 +23,15 @@ export const WeatherImage = styled.img`
   border-radius: 8px;
   object-fit: cover;
 `;
+
+/* css animations */
+export const hidden = css`
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+`;
+/* css animations */
+export const show = css`
+  opacity: 1;
+  transform: translateY(0);
+`;
