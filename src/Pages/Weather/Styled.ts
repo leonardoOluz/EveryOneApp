@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { fadeIn } from "../../styles/globalStyles";
+import { WeatherContainerStandard } from "../../styles/weatherStyles/globalStyles";
 
 export const WeaterStyledMain = styled.main<{
   imageWeather: string;
@@ -44,6 +45,10 @@ export const WeatherStyledTitulo = styled.h1<{ toggleColor: boolean }>`
   font-weight: 800;
   padding: 0.5rem 1rem;
   font-size: ${({ theme }) => theme.fontSizeTitle};
+  ${WeatherContainerStandard}
+  width: 100%;
+  max-width: 750px;
+  box-sizing: border-box;
 `;
 
 export const WeatherContainerDayHours = styled.div`

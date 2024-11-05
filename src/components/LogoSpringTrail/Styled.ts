@@ -1,15 +1,20 @@
 import { animated } from "@react-spring/web";
 import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{displayDirection: string}>`
   display: flex;
   gap: 5px;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: ${({displayDirection}) => displayDirection};
+  }
 `;
 
-export const Box = styled.div`
+export const Box = styled.div<{ widthBox: number; hightBox: number }>`
   position: relative;
-  height: 20px;
-  width: 20px;
+  height: ${({ hightBox: h }) => `${h}px`};
+  width: ${({ widthBox: w }) => `${w}px`};
 `;
 
 export const SharedStyles = css`

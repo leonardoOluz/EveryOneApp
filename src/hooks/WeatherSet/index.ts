@@ -89,6 +89,7 @@ export const useWeatherDadosApi = () => {
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
   const [image, setImage] = useState<string>();
+
   const { isLoading, data: data } = useReactQueryWeatherForecast(
     latitude,
     longitude

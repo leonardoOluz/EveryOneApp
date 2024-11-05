@@ -4,7 +4,13 @@ import { BackBox, Box, Container, FrontBox } from './Styled'
 
 const items = ['E', 'V', 'E', 'R', 'Y', 'O', 'N', 'E', ' ', 'A', 'P', 'P']
 
-const LogoSpringTrail = () => {
+interface PropsLogoSpringTrail {
+  hightBox?: number;
+  widthBox?: number;
+  displayDirection?: string;
+}
+
+const LogoSpringTrail = ({ hightBox = 20, widthBox = 20, displayDirection = "row" }: PropsLogoSpringTrail) => {
   const [isFlipped, setIsFlipped] = useState(false)
   const [trail, api] = useTrail(items.length, () => ({
     rotateX: 0,
@@ -29,9 +35,9 @@ const LogoSpringTrail = () => {
   }, [api, isFlipped])
 
   return (
-    <Container>
+    <Container displayDirection={displayDirection}>
       {trail.map(({ rotateX }, i) => (
-        <Box key={i}>
+        <Box key={i} hightBox={hightBox} widthBox={widthBox}>
           <FrontBox
             key={items[i]}
             style={{

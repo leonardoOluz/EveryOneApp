@@ -36,6 +36,9 @@ export const useReactQueryWeatherForecast = (
   return useQuery<{ data: IData }>({
     queryKey: ["weatherForecast"],
     queryFn: () => getWeatherForecast(latitude, longetude),
+    refetchInterval: 60000 * 10,
+    refetchIntervalInBackground: true,
+    staleTime: 1000,
     enabled: latitude !== 0 && longetude !== 0,
   });
 };

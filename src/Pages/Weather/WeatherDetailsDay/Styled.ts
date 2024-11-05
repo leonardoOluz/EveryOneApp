@@ -42,7 +42,7 @@ export const WeatherListaDetailsDayStyled = styled.ul`
   }
 `;
 
-export const WeatherDetailsDayContainer = styled.div<{ toggleColor?: boolean }>`
+export const WeatherDetailsDayContainer = styled.figure<{ toggleColor?: boolean }>`
   display: flex;
   gap: 0.5rem;
   text-align: center;

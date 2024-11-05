@@ -8,6 +8,7 @@ import { FaCloudRain } from "react-icons/fa6";
 import { CiDroplet } from "react-icons/ci";
 import { WiHumidity } from "react-icons/wi";
 import { WeatherImage } from "../../../styles/weatherStyles/globalStyles";
+import { PiWind } from "react-icons/pi";
 interface IWeatherDetailsDayProps {
   day: IDay;
   toggleColor: boolean;
@@ -57,6 +58,13 @@ const WeatherDetailsDay = ({ day, toggleColor, date }: IWeatherDetailsDayProps) 
         <WeatherDetailsDayContainer toggleColor={toggleColor}>
           <FaCloudRain size={20} />
           <span>{day?.daily_chance_of_rain} <strong>%</strong></span>
+        </WeatherDetailsDayContainer>
+      </li>
+      <li>
+        <h3>Vento</h3>
+        <WeatherDetailsDayContainer toggleColor={toggleColor}>
+        <PiWind size={20} />
+        <span>{day.maxwind_kph} km/h</span>
         </WeatherDetailsDayContainer>
       </li>
     </WeatherListaDetailsDayStyled>
