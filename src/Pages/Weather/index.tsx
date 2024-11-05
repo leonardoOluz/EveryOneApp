@@ -5,7 +5,7 @@ import {
   WeatherStyledTitulo
 } from "./Styled";
 import { useWeatherDadosApi } from "../../hooks/WeatherSet";
-import { toggleColor, setDateDayMonth } from "../../utils/weather";
+import { toggleColor } from "../../utils/weather";
 import WeatherDatailsNow from "./WeatherDetailsNow";
 import WeatherDetailsDay from "./WeatherDetailsDay";
 import WeatherDetailsListHours from "./WeatherDetailsListHours";
