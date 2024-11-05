@@ -7,6 +7,8 @@ import {
 export const WeatherLocalizationContainer = styled.div`
   ${WeatherContainerStandard}
   ${WeatherContainerStyled}
+  width: 100%;
+  max-width: 750px;
   text-align: center;
   padding: 1rem;
   font-size: ${({ theme }) => theme.fontSizeBig};

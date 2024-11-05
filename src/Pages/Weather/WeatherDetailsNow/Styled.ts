@@ -7,6 +7,8 @@ import {
 export const WeatherStyledContainerNow = styled.div`
   ${WeatherContainerStyled}
   ${WeatherContainerStandard}
+  width: 100%;
+  max-width: 750px;
   .Details {
     display: flex;
     align-items: center;

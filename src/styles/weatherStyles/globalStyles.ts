@@ -10,7 +10,7 @@ export const WeatherContainerStyled = css`
 `;
 
 export const WeatherContainerStandard = css`
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.8);
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
 `;
