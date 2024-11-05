@@ -4,6 +4,7 @@ import { useWeatherScrollObserver } from "../../../hooks/WeatherSet";
 import { IDay } from "../../../Interfaces/Weather";
 import { setDateDayMonth, setTotalPrecipMm } from "../../../utils/weather";
 import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
+import { FaCloudRain } from "react-icons/fa6";
 import { CiDroplet } from "react-icons/ci";
 import { WiHumidity } from "react-icons/wi";
 import { WeatherImage } from "../../../styles/weatherStyles/globalStyles";
@@ -17,12 +18,12 @@ const WeatherDetailsDay = ({ day, toggleColor, date }: IWeatherDetailsDayProps) 
   const elementRef = useRef<HTMLDivElement>(null)
   useWeatherScrollObserver(elementRef, "show");
 
-  return <WeatherDetailsDayStyled ref={elementRef}>
+  return (<WeatherDetailsDayStyled ref={elementRef}>
     <h2>Previsão para {setDateDayMonth(date)}</h2>
     <WeatherFigureDayStyled>
       <h3>{day?.condition.text}</h3>
       <figure>
-        <WeatherImage src={day?.condition.icon} alt={`icone do clima hoje ${day?.condition.text}`}/>
+        <WeatherImage src={day?.condition.icon} alt={`icone do clima hoje ${day?.condition.text}`} />
       </figure>
     </WeatherFigureDayStyled>
     <WeatherListaDetailsDayStyled>
@@ -36,30 +37,30 @@ const WeatherDetailsDay = ({ day, toggleColor, date }: IWeatherDetailsDayProps) 
         </WeatherDetailsDayContainer>
       </li>
       <li>
-        <h3>Chuva</h3>
+        <h3>Precipitação</h3>
         <WeatherDetailsDayContainer toggleColor={toggleColor}>
-          <CiDroplet size={20}/>
-          <CiDroplet size={20}/>
-          <CiDroplet size={20}/>
+          <CiDroplet size={20} />
+          <CiDroplet size={20} />
+          <CiDroplet size={20} />
           <span>{setTotalPrecipMm(day?.totalprecip_mm || 0)}</span>
         </WeatherDetailsDayContainer>
       </li>
       <li>
         <h3>Umidade</h3>
         <WeatherDetailsDayContainer toggleColor={toggleColor}>
-          <WiHumidity size={20} />
+          <WiHumidity size={26} />
           <span>{day?.avghumidity} <strong>%</strong></span>
         </WeatherDetailsDayContainer>
       </li>
       <li>
         <h3>Chance de chuva</h3>
         <WeatherDetailsDayContainer toggleColor={toggleColor}>
-          <WiHumidity size={20} />
-          <span>{day?.avghumidity} <strong>%</strong></span>
+          <FaCloudRain size={20} />
+          <span>{day?.daily_chance_of_rain} <strong>%</strong></span>
         </WeatherDetailsDayContainer>
       </li>
     </WeatherListaDetailsDayStyled>
-  </WeatherDetailsDayStyled>
+  </WeatherDetailsDayStyled>)
 };
 
 export default WeatherDetailsDay;

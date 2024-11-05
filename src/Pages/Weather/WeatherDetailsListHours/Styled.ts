@@ -6,8 +6,6 @@ import {
 } from "../../../styles/weatherStyles/globalStyles";
 
 export const WeatherStyledListHours = styled.ul`
-  width: 80%;
-  max-width: 750px;
   margin: 1rem auto;
   ${hidden}
   &.show {

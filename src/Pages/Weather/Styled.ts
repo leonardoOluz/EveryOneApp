@@ -39,8 +39,14 @@ export const WeatherStyledSection = styled.section`
 
 export const WeatherStyledTitulo = styled.h1<{ toggleColor: boolean }>`
   text-align: center;
-  ${({ toggleColor, theme }) => (toggleColor ? "color: white" : `color: ${theme.text}`)}
+  ${({ toggleColor, theme }) =>
+    toggleColor ? "color: white" : `color: ${theme.text}`}
   font-weight: 800;
   padding: 0.5rem 1rem;
   font-size: ${({ theme }) => theme.fontSizeTitle};
+`;
+
+export const WeatherContainerDayHours = styled.div`
+  width: 100%;
+  max-width: 750px;
 `;

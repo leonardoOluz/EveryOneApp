@@ -89,3 +89,8 @@ export interface IImagesVariables {
   skyCloudyRainEasy: string;
   skyCloudyRainHard: string;
 }
+export interface GeolocationHookReturn {
+  loading: boolean;
+  error: string | null;
+  coords: GeolocationCoordinates | null;
+}

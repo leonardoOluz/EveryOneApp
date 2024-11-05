@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { GeolocationHookReturn } from "../../Interfaces/Weather";
+import { useReactQueryWeatherForecast } from "../../http/hooks/useHttpWeather";
+import { backgroudImageWeather } from "../../utils/weather";
 
 export const useWeatherScrollObserver = (
   elementRef: React.RefObject<HTMLDivElement>,
@@ -31,12 +34,6 @@ export const useWeatherScrollObserver = (
   }, [elementRef, nameClass]);
 };
 
-interface GeolocationHookReturn {
-  loading: boolean;
-  error: string | null;
-  coords: GeolocationCoordinates | null;
-}
-
 export const useGeolocation = (): GeolocationHookReturn => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,31 +57,56 @@ export const useGeolocation = (): GeolocationHookReturn => {
 };
 
 export const useResize = (): number => {
-  const [slidesPerView, setSlidesPerView] = useState<number>(9)
-  
+  const [slidesPerView, setSlidesPerView] = useState<number>(9);
+
   useEffect(() => {
-      const resize = () => {
-        if (window.innerWidth < 400) {
-          return setSlidesPerView(3)
-        }
-        if (window.innerWidth < 768) {
-          return setSlidesPerView(4)
-        }
-        if (window.innerWidth < 1025) {
-          return setSlidesPerView(6)
-        }
-        if (window.innerWidth > 1025) {
-          return setSlidesPerView(9)
-        }
-      };
-  
-    window.addEventListener('resize', resize);
+    const resize = () => {
+      if (window.innerWidth < 400) {
+        return setSlidesPerView(3);
+      }
+      if (window.innerWidth < 768) {
+        return setSlidesPerView(4);
+      }
+      if (window.innerWidth < 1025) {
+        return setSlidesPerView(6);
+      }
+      if (window.innerWidth > 1025) {
+        return setSlidesPerView(9);
+      }
+    };
+
+    window.addEventListener("resize", resize);
     return () => {
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
     };
   }, []);
 
   return slidesPerView;
-
 };
 
+export const useWeatherDadosApi = () => {
+  const { coords, loading } = useGeolocation();
+  const [latitude, setLatitude] = useState<number>(0);
+  const [longitude, setLongitude] = useState<number>(0);
+  const [image, setImage] = useState<string>();
+  const { isLoading, data: data } = useReactQueryWeatherForecast(
+    latitude,
+    longitude
+  );
+
+  useEffect(() => {
+    if (!loading && coords) {
+      setLatitude(coords?.latitude);
+      setLongitude(coords?.longitude);
+    }
+    if (data?.data.current) {
+      setImage(backgroudImageWeather(data?.data.current));
+    }
+  }, [longitude, latitude, loading, coords, data?.data]);
+
+  return {
+    isLoading,
+    image,
+    data,
+  };
+};

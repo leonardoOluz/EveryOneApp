@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
 
 export const WeatherContainerStyled = css`
-  width: 100%;
-  max-width: 750px;
   box-sizing: border-box;
   padding: 2rem;
   display: flex;

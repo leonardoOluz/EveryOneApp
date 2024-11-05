@@ -1,70 +1,50 @@
-import { useEffect, useState } from "react";
 import {
   WeaterStyledMain,
+  WeatherContainerDayHours,
   WeatherStyledSection,
   WeatherStyledTitulo
 } from "./Styled";
-
-
-import { useReactQueryWeatherForecast } from "../../http/hooks/useHttpWeather";
+import { useWeatherDadosApi } from "../../hooks/WeatherSet";
+import { toggleColor } from "../../utils/weather";
 import WeatherDatailsNow from "./WeatherDetailsNow";
 import WeatherDetailsDay from "./WeatherDetailsDay";
-import Loader from "../../components/Loader";
-import { useGeolocation } from "../../hooks/WeatherSet";
 import WeatherDetailsListHours from "./WeatherDetailsListHours";
 import WeatherDetailsLocation from "./WeatherDetailsLocation";
-import { backgroudImageWeather, toggleColor } from "../../utils/weather";
+import Loader from "../../components/Loader";
 
 const Weather = () => {
-  const { coords, loading } = useGeolocation();
-  const [latitude, setLatitude] = useState<number>(0)
-  const [longetude, setLongitude] = useState<number>(0)
-  const [image, setImage] = useState<string>()
-  const { isLoading, data: data } = useReactQueryWeatherForecast(latitude, longetude);
+  const { data, isLoading, image } = useWeatherDadosApi();
 
-  useEffect(() => {
-    if (!loading && coords) {
-      setLatitude(coords?.latitude)
-      setLongitude(coords?.longitude)
-    }
-    if (data?.data.current) {
-      setImage(backgroudImageWeather(data?.data.current))
-    }
-
-  }, [longetude, latitude, loading, coords, data?.data])
-
-  if (isLoading && !data && !image) {
-    return <Loader />
+  if (isLoading || !data || !image) {
+    return (
+      <Loader />
+    )
   }
 
   return (
-    <>
-      {data?.data && image ? (
-        <WeaterStyledMain
-          imageWeather={image}
-          toggleColor={toggleColor(data?.data.current?.is_day, image)} >
-          <WeatherStyledSection>
-            <WeatherStyledTitulo toggleColor={toggleColor(data?.data.current?.is_day, image)}>Clima Tempo EveryOne-App</WeatherStyledTitulo>
-            <WeatherDetailsLocation location={data?.data.location} />
-            <WeatherDatailsNow current={data?.data.current} />
-            {data?.data.forecast.forecastday.map((clima) => (
-              <>
-                <WeatherDetailsDay
-                  day={clima.day}
-                  date={clima.date}
-                  toggleColor={toggleColor(data?.data.current?.is_day, image)}
-                />
-                <WeatherDetailsListHours
-                  toggleColor={toggleColor(data?.data.current?.is_day, image)}
-                  hours={clima.hour}
-                />
-              </>
-            ))}
-          </WeatherStyledSection>
-        </WeaterStyledMain >
-      )
-        : <Loader />}
-    </>)
+    <WeaterStyledMain
+      imageWeather={image}
+      toggleColor={toggleColor(data.data.current.is_day, image!)} >
+      <WeatherStyledSection>
+        <WeatherStyledTitulo toggleColor={toggleColor(data.data.current.is_day, image!)}>Clima Tempo EveryOne-App</WeatherStyledTitulo>
+        <WeatherDetailsLocation location={data.data.location} />
+        <WeatherDatailsNow current={data.data.current} />
+        {data?.data.forecast.forecastday.map((clima, index) => (
+          <WeatherContainerDayHours key={index}>
+            <WeatherDetailsDay
+              day={clima.day}
+              date={clima.date}
+              toggleColor={toggleColor(data?.data.current?.is_day, image)}
+            />
+            <WeatherDetailsListHours
+              toggleColor={toggleColor(data?.data.current?.is_day, image)}
+              hours={clima.hour}
+            />
+          </WeatherContainerDayHours>
+        ))}
+      </WeatherStyledSection>
+    </WeaterStyledMain >
+  )
 };
 
 export default Weather;

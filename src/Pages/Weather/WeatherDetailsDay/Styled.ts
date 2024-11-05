@@ -30,17 +30,18 @@ export const WeatherFigureDayStyled = styled.div`
 `;
 
 export const WeatherListaDetailsDayStyled = styled.ul`
-  display: flex;
+  display: inline-block;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 3rem;
   li {
-    box-sizing: border-box;
-    text-align: center;
-    border: 1px solid ${({ theme }) => theme.border};
-    padding: 0.5rem;
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
   }
 `;
+
 export const WeatherDetailsDayContainer = styled.div<{ toggleColor?: boolean }>`
   display: flex;
   gap: 0.5rem;
