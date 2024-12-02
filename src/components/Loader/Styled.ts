@@ -14,44 +14,44 @@ export const ContainerLoader = styled.div`
 
 export const LoaderKey = keyframes`
     0% {
-    top: 8px;
-    height: 64px;
+    top: .8rem;
+    height: 6.4rem;
   }
   50%, 100% {
-    top: 24px;
-    height: 32px;
+    top: 2.4rem;
+    height: 3.2rem;
   }
 `;
 
 export const LdsFacebook = styled.div`
-  color: ${({ theme }) => theme.inside};
+  color: ${({ theme }) => theme.secondary};
   box-sizing: border-box;
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 8rem;
+  height: 8rem;
 
   div {
     box-sizing: border-box;
     display: inline-block;
     position: absolute;
-    left: 8px;
-    width: 16px;
+    left: .8rem;
+    width: 1.6rem;
     background: currentColor;
     animation: ${LoaderKey} 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 
     &:nth-child(1) {
-      left: 8px;
+      left: .8rem;
       animation-delay: -0.24s;
     }
 
     &:nth-child(2) {
-      left: 32px;
+      left: 3.2rem;
       animation-delay: -0.12s;
     }
 
     &:nth-child(3) {
-      left: 56px;
+      left: 5.6rem;
       animation-delay: 0s;
     }
   }

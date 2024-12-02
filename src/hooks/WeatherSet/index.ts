@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GeolocationHookReturn } from "../../Interfaces/Weather";
 import { useReactQueryWeatherForecast } from "../../http/hooks/useHttpWeather";
-import { backgroudImageWeather } from "../../utils/weather";
+import { backgroudImageWeather } from "../../utils/ClimaTempoUtils";
 
 export const useWeatherScrollObserver = (
   elementRef: React.RefObject<HTMLDivElement>,

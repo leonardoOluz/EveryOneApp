@@ -6,6 +6,6 @@ export const EveryOneAppStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({ theme }) => theme.body};
+    background-color: ${({ theme }) => theme.primary};
 `;
 

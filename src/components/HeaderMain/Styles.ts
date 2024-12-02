@@ -11,11 +11,19 @@ export const HeaderStyled = styled.header<{ showheader: boolean }>`
   justify-content: space-between;
 `;
 
-export const HeaderContainerIsDark = styled.button`
+export const IsDark = styled.label`
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
   svg {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.quinary};
   }
 `;

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { HeaderContainerIsDark, HeaderStyled } from "./Styles";
+import { IsDark, HeaderStyled } from "./Styles";
 import LogoSpringTrail from "../LogoSpringTrail";
 import { ThemeContext } from "../../contexts/themeContext";
 import { MdLightMode } from "react-icons/md";
@@ -23,9 +23,10 @@ const HeaderMain = () => {
       showheader={isScrolled}
     >
       <LogoSpringTrail />
-      <HeaderContainerIsDark onClick={() => setIsDarkMode(!isDarkMode)}>
+      <IsDark htmlFor="checkbox-darkmode" aria-label="botão de troca de tema" >
+        <input id="checkbox-darkmode" type="checkbox" onChange={() => setIsDarkMode(!isDarkMode)} />
         <MdLightMode size={24} />
-      </HeaderContainerIsDark>
+      </IsDark>
     </HeaderStyled>
   )
 }

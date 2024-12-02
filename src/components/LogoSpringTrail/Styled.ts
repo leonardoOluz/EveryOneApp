@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.div<{displayDirection: string}>`
   display: flex;
-  gap: 5px;
+  gap: .5rem;
   box-sizing: border-box;
 
   @media screen and (max-width: 768px) {
@@ -13,8 +13,8 @@ export const Container = styled.div<{displayDirection: string}>`
 
 export const Box = styled.div<{ widthBox: number; hightBox: number }>`
   position: relative;
-  height: ${({ hightBox: h }) => `${h}px`};
-  width: ${({ widthBox: w }) => `${w}px`};
+  height: ${({ hightBox: h }) => `${h}rem`};
+  width: ${({ widthBox: w }) => `${w}rem`};
 `;
 
 export const SharedStyles = css`
@@ -32,14 +32,14 @@ export const SharedStyles = css`
 
 export const FrontBox = styled(animated.div)`
   ${SharedStyles}
-  background-color: ${({ theme }) => theme.text};
-  color: ${({ theme }) => theme.body};
+  background-color: ${({ theme }) => theme.quinary};
+  color: ${({ theme }) => theme.primary};
   border: none;
 `;
 
 export const BackBox = styled(animated.div)`
   ${SharedStyles}
-  background-color: ${({ theme }) => theme.body};
-  border: solid 1px ${({ theme }) => theme.text};
-  color: ${({ theme }) => theme.text};
+  border: solid .1rem ${({ theme }) => theme.quaternary};
+  background-color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.quinary};
 `;

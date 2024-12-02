@@ -16,7 +16,7 @@ function App() {
     <StiloSheetManager>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={isDarkMode ? themeDark : themeLight}>
-          <GlobalStyle fontAplic />
+          <GlobalStyle />
           <RoutesUse />
         </ThemeProvider>
       </QueryClientProvider>

@@ -10,7 +10,7 @@ interface PropsLogoSpringTrail {
   displayDirection?: string;
 }
 
-const LogoSpringTrail = ({ hightBox = 20, widthBox = 20, displayDirection = "row" }: PropsLogoSpringTrail) => {
+const LogoSpringTrail = ({ hightBox = 2.0, widthBox = 2.0, displayDirection = "row" }: PropsLogoSpringTrail) => {
   const [isFlipped, setIsFlipped] = useState(false)
   const [trail, api] = useTrail(items.length, () => ({
     rotateX: 0,

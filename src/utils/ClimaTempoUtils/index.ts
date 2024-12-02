@@ -1,16 +1,7 @@
 import { ICurrent } from "../../Interfaces/Weather";
-import { imagesDay, imagesNight } from "../../styles/weatherStyles/IU";
+import { imagesDay, imagesNight } from "../../styles/StylesClima/IU";
+import { dateTransform } from "../other/dateTransform";
 
-export function setDateDayMonth(date: Date): string {
-  const dayMounth = new Date(date + " 00:00")
-  .toLocaleString("pt-BR", {
-    timeZone: "America/Sao_Paulo",
-    day: "2-digit",
-    month: "2-digit",
-  });
-
-  return dayMounth;
-}
 export function setDateHoursMinute(date: Date): string {
   const apiDate = new Date(date);
   const hour = apiDate.getHours();
@@ -21,9 +12,13 @@ export function setDateHoursMinute(date: Date): string {
 }
 
 export function setDateNow(date: Date): string {
-  const apiDate = new Date(date);
+  const apiDate = dateTransform(date);
   const day = apiDate.toLocaleString("pt-BR", {
-    formatMatcher: "best fit",
+    weekday: "long",
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 
   return `${day}`;
@@ -64,4 +59,14 @@ export function toggleColor(day: number, image: string): boolean {
 
 export function setTotalPrecipMm(precip: number): string {
   return `${precip.toString()} mm`;
+}
+
+export function checkHoursAtual(currentData: Date, hours: Date): boolean {
+  const atual = dateTransform(currentData);
+  const hour = dateTransform(hours);
+  let isNow = false;
+  if (atual.getHours() === hour.getHours()) {
+    isNow = true;
+  }
+  return isNow;
 }

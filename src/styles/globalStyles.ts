@@ -1,10 +1,14 @@
-import  { createGlobalStyle, css, keyframes } from "styled-components";
+import { createGlobalStyle, css, keyframes } from "styled-components";
 import { styledVariable } from "./IU";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-const GlobalStyle = createGlobalStyle<{ fontAplic?: boolean }>`
+const GlobalStyle = createGlobalStyle`
+:root {
+  font-size: 62.5%;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,7 +25,6 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -31,18 +34,11 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-  /* line-height: 1; */
-  font-family: ${({ theme, fontAplic }) => {
-    if (fontAplic) {
-      return theme.fontesFamily;
-    }
-    return styledVariable.fontesFamily.primary;
-  }};
+  font-family: ${styledVariable.fontesFamily.secundary};
   font-optical-sizing: auto;
   font-style: normal;
   font-weight: 400;
-  /* background-color: ${({ theme }) => theme.body}; */
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.quinary};
 }
 ol, ul {
 	list-style: none;
@@ -65,23 +61,23 @@ export const MainPerson = css`
   position: fixed;
   left: 0;
   right: 0;
-  padding: 2rem;
+  padding: 3.2rem;
   display: flex;
-  z-index: 999;
-  background-color: ${({ theme }) => theme.inside};
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  background-color: ${({ theme }) => theme.secondary};
+  box-shadow: 0.4rem 0.4rem 1rem rgba(0, 0, 0, 0.5);
   transition: transform 0.4s ease-in-out;
   @media screen and (max-width: 768px) {
-    padding: 2rem 1rem;
+    padding: 3.2rem 1.6rem;
   }
 `;
 
 export const ButtonPerson = css`
-  right: 10px;
+  right: 1rem;
   position: absolute;
-  width: 100px;
+  width: 10rem;
   background-color: rgba(0, 0, 0, 0.1);
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.quinary};
   cursor: pointer;
 `;
 
@@ -94,6 +90,12 @@ export const fadeIn = keyframes`
     opacity: 1;
     transform: translateY(0);
   }
+`;
+
+/* css animations */
+export const show = css`
+  opacity: 1;
+  transform: translateY(0);
 `;
 
 export default GlobalStyle;
