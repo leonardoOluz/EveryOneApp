@@ -6,7 +6,7 @@ import { IData } from "../../Interfaces/Weather";
 
 const useHttpWeather = () => {
   const httpWeather = axios.create({
-    baseURL: "http://api.weatherapi.com/v1",
+    baseURL: "https://api.weatherapi.com/v1",
     params: {
       key: "718afc8ffdc746a681c213104240710",
     },
