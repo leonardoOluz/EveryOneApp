@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SectionClimaStyled } from "../../styles/StylesClima/StylesClima";
 
 export const MainStyled = styled.main`
   display: flex;
@@ -35,4 +36,16 @@ export const ListaHorasStyled = styled.ul`
     width: 1px;
     opacity: 0;
   }
+`;
+
+export const SectionClimaHorasStyled = styled.section`
+  ${SectionClimaStyled}
+`;
+
+export const SectionClimaAstrosStyled = styled.section`
+  ${SectionClimaStyled}
+`;
+
+export const SectionClimaProxDiasStyled = styled.section`
+  ${SectionClimaStyled}
 `;

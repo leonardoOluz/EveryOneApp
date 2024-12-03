@@ -1,23 +1,24 @@
 import { PiWind } from "react-icons/pi";
-import { SpanDetalhesClimaTempoStyled, SubTituloStyled, WeatherImage } from "../../../styles/StylesClima/StylesClima";
-import { SecaoClimaHoje } from "./Styled";
+import { SpanDetalhesClimaTempoStyled, SubTituloStyled, ClimaImage } from "../../../styles/StylesClima/StylesClima";
+import { SecaoClimaHojeStyled } from "./Styled";
 import { WiHumidity } from "react-icons/wi";
 import { GiWaterSplash } from "react-icons/gi";
 import { IDay } from "../../../Interfaces/Weather";
 import { setTotalPrecipMm } from "../../../utils/ClimaTempoUtils";
 import { FaTemperatureArrowDown, FaTemperatureArrowUp } from "react-icons/fa6";
+import { ValueRemClima } from "../../../styles/StylesClima/EnumsClima";
 
 interface PropsClimaHoje {
   day: IDay;
 }
-const ClimaHoje = ({ day }: PropsClimaHoje) => {
+const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
   return (
-    <SecaoClimaHoje>
+    <SecaoClimaHojeStyled>
       <SubTituloStyled>Previsão do dia</SubTituloStyled>
       <ul aria-label="lista de informações do clima hoje">
         <li>
           <figure>
-            <WeatherImage maxWidth="7rem" src={day.condition.icon} alt="icone do clima hoje" title="icone do clima hoje" />
+            <ClimaImage maxWidth={ValueRemClima.rem7} src={day.condition.icon} alt="icone do clima hoje" title="icone do clima hoje" />
             <figcaption className="weather__climaHoje-description">{day.condition.text}</figcaption>
           </figure>
         </li>
@@ -67,8 +68,8 @@ const ClimaHoje = ({ day }: PropsClimaHoje) => {
           </figure>
         </li>
       </ul>
-    </SecaoClimaHoje>
+    </SecaoClimaHojeStyled>
   )
 };
 
-export default ClimaHoje;
+export default SectionClimaHoje;

@@ -3,11 +3,12 @@ import Loader from "../../components/Loader";
 import { useWeatherDadosApi } from "../../hooks/WeatherSet";
 import { checkHoursAtual } from "../../utils/ClimaTempoUtils";
 import ClimaAtual from "./ClimaAtual";
-import ClimaHoje from "./ClimaHoje";
+import SectionClimaHoje from "./ClimaHoje";
 import ItemClimaHoras from "./ClimaHoras";
-import { ContainerDivisorStyled, ListaHorasStyled, MainStyled } from "./Styled";
-import { SectionWeatherStyled, SubTituloStyled } from "../../styles/StylesClima/StylesClima";
-import ClimaDetalhes from "./CLimaDetalhes";
+import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaHorasStyled, SectionClimaProxDiasStyled } from "./Styled";
+import { SubTituloStyled } from "../../styles/StylesClima/StylesClima";
+import ClimaAstros from "./CLimaAstros";
+import ClimaProxDias from "./ClimaProxDias";
 
 
 
@@ -46,19 +47,19 @@ const ClimaTempo = () => {
     )
   }
 
-
-
   return (
     <MainStyled role="main">
 
       <ClimaAtual current={data.data.current} image={image} location={data.data.location} />
 
       <ContainerDivisorStyled>
-        <ClimaHoje day={data.data.forecast.forecastday[0].day} />
-        <SectionWeatherStyled>
+
+        <SectionClimaHoje day={data.data.forecast.forecastday[1].day} />
+
+        <SectionClimaHorasStyled>
           <SubTituloStyled>Previsão das próximas horas</SubTituloStyled>
           <ListaHorasStyled ref={listaRef}>
-            {data?.data.forecast.forecastday[0].hour.map((hour, index) => {
+            {data?.data.forecast.forecastday[1].hour.map((hour, index) => {
               const isAtivo: boolean = verificarHoraAtualMemoizado(data.data.location.localtime!, hour.time!);
               if (isAtivo && index !== indexAtualHora) {
                 setIndexAtualHora(index);
@@ -73,19 +74,26 @@ const ClimaTempo = () => {
               )
             })}
           </ListaHorasStyled>
-        </SectionWeatherStyled>
+        </SectionClimaHorasStyled>
+      
       </ContainerDivisorStyled>
 
       <ContainerDivisorStyled>
 
-        <SectionWeatherStyled>
-          <ClimaDetalhes
-            astro={data.data.forecast.forecastday[0].astro}
-            day={data.data.forecast.forecastday[0].day}
+        <SectionClimaAstrosStyled>
+          <ClimaAstros
+            astro={data.data.forecast.forecastday[1].astro}
+            day={data.data.forecast.forecastday[1].day}
           />
-        </SectionWeatherStyled>
+        </SectionClimaAstrosStyled>
 
-        <ClimaHoje day={data.data.forecast.forecastday[2].day} />
+        <SectionClimaProxDiasStyled>
+          <SubTituloStyled>Clima dos proximos dias</SubTituloStyled>
+          {data.data.forecast.forecastday.map((forestday, index) => (
+            <ClimaProxDias forestday={forestday} key={index} />
+          ))}
+        </SectionClimaProxDiasStyled>
+        
       </ContainerDivisorStyled>
 
     </MainStyled>

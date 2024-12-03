@@ -1,12 +1,8 @@
 import styled from "styled-components";
+import { SectionClimaStyled } from "../../../styles/StylesClima/StylesClima";
 
-export const SecaoClimaHoje = styled.section`
-  padding: 1.6rem;
-  background-color: ${({ theme }) => theme.secondary};
-  width: 45%;
-  height: auto;
-  max-height: 35rem;
-
+export const SecaoClimaHojeStyled = styled.section`
+  ${SectionClimaStyled}
   ul {
     display: flex;
     flex-direction: column;
