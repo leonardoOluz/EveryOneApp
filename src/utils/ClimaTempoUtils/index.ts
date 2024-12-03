@@ -11,6 +11,17 @@ export function setDateHoursMinute(date: Date): string {
   }`;
 }
 
+export function setDateWeekMonthDay(date: Date): string {
+  const apiDate = dateTransform(date);
+  const day = apiDate.toLocaleString("pt-BR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "2-digit",
+  });
+
+  return `${day}`;
+}
+
 export function setDateNow(date: Date): string {
   const apiDate = dateTransform(date);
   const day = apiDate.toLocaleString("pt-BR", {

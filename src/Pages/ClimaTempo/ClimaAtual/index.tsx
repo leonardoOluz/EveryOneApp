@@ -1,6 +1,6 @@
 import { TbTemperatureSun } from "react-icons/tb";
 import { ContainerImagemAtual, ContainerTituloLocalStyled, ContainerWeatherNow } from "./Styled";
-import { WeatherImage } from "../../../styles/StylesClima/StylesClima";
+import { ClimaImage } from "../../../styles/StylesClima/StylesClima";
 import { ICurrent, ILocation } from "../../../Interfaces/Weather";
 import { setDateNow, toggleColor } from "../../../utils/ClimaTempoUtils";
 
@@ -22,7 +22,7 @@ const ClimaAtual = ({ current, image, location }: PropsClimaAtual) => {
         <ul aria-label="lista do tempo atual">
           <li>
             <figure>
-              <WeatherImage src={current?.condition.icon} alt="imagem do clima atual" />
+              <ClimaImage src={current?.condition.icon} alt="imagem do clima atual" />
               <figcaption>{current?.condition.text}</figcaption>
             </figure>
           </li>

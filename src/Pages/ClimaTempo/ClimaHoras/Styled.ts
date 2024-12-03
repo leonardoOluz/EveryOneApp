@@ -15,10 +15,7 @@ export const ItemListaHoraStyled = styled.li<{ active: boolean }>`
     ${({ theme, active }) => (active ? theme.secondary : theme.quinary)};
   padding-bottom: 0.2rem;
 
-  .divisorStyled {
-    height: 1.6rem;
-    border: 1px solid ${({ theme }) => theme.quinary};
-  }
+  
 
   @media screen and (max-width: 600px) {
     .hiddenComponente {
