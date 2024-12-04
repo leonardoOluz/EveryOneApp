@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SectionClimaStyled } from "../../styles/StylesClima/StylesClima";
+import imagemFundoTempo from "../../assets/ImagenClimaTempoTwo.jpg";
 
 export const MainStyled = styled.main`
   display: flex;
@@ -7,7 +8,7 @@ export const MainStyled = styled.main`
   flex-wrap: wrap;
   gap: 1rem;
   padding: 2rem;
-  background-image: url("/src/Pages/ClimaTempo/assets/ImagenClimaTempoTwo.jpg");
+  background-image: url(${imagemFundoTempo});
   background-repeat: no-repeat;
   background-size: cover;
 `;

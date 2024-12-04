@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GeolocationHookReturn } from "../../Interfaces/Weather";
+import { GeolocationHookReturn, UseScrollToItemProps } from "../../Interfaces/Weather";
 import { useReactQueryWeatherForecast } from "../../http/hooks/useHttpWeather";
 import { backgroudImageWeather } from "../../utils/ClimaTempoUtils";
 
@@ -110,4 +110,36 @@ export const useWeatherDadosApi = () => {
     image,
     data,
   };
+};
+
+export const useScrollToItem = ({
+  listaRef,
+  indexAtualHora,
+  data,
+}: UseScrollToItemProps) => {
+  
+  useEffect(() => {
+
+    if (indexAtualHora && listaRef.current && data) {
+      const item = listaRef.current.children[indexAtualHora];
+      const itemRect = item.getBoundingClientRect();
+      const listaRect = listaRef.current.getBoundingClientRect();
+      const posicaoVertical =
+        itemRect.top -
+        listaRect.top +
+        itemRect.height / 2 -
+        listaRect.height / 2;
+
+      listaRef.current.scrollTo({
+        top: posicaoVertical,
+        behavior: "smooth",
+      });
+    }
+
+  }, [
+    data,
+    data?.data.forecast.forecastday,
+    data?.data.location.localtime,
+    indexAtualHora, listaRef
+  ]);
 };

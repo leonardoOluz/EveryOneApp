@@ -94,3 +94,11 @@ export interface GeolocationHookReturn {
   error: string | null;
   coords: GeolocationCoordinates | null;
 }
+
+export interface UseScrollToItemProps {
+  listaRef: React.RefObject<HTMLElement>;
+  indexAtualHora: number | undefined;
+  data: {
+    data: IData;
+  } | undefined;
+}
