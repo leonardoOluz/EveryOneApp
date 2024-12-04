@@ -1,36 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import Loader from "../../components/Loader";
-import { useWeatherDadosApi } from "../../hooks/WeatherSet";
+import { useMemo, useRef, useState } from "react";
+import { useScrollToItem, useWeatherDadosApi } from "../../hooks/WeatherSet";
 import { checkHoursAtual } from "../../utils/ClimaTempoUtils";
+import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaHorasStyled, SectionClimaProxDiasStyled } from "./Styled";
+import { SubTituloStyled } from "../../styles/StylesClima/StylesClima";
+import Loader from "../../components/Loader";
 import ClimaAtual from "./ClimaAtual";
 import SectionClimaHoje from "./ClimaHoje";
 import ItemClimaHoras from "./ClimaHoras";
-import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaHorasStyled, SectionClimaProxDiasStyled } from "./Styled";
-import { SubTituloStyled } from "../../styles/StylesClima/StylesClima";
 import ClimaAstros from "./CLimaAstros";
 import ClimaProxDias from "./ClimaProxDias";
-
-
 
 const ClimaTempo = () => {
   const listaRef = useRef<HTMLUListElement>(null);
   const { data, isLoading, image } = useWeatherDadosApi();
   const [indexAtualHora, setIndexAtualHora] = useState<number>(-1);
-
-  /* Colocar em um hook personalizado */
-  useEffect(() => {
-    if (indexAtualHora !== -1 && listaRef.current) {
-      const item = listaRef.current.children[indexAtualHora];
-      const itemRect = item.getBoundingClientRect();
-      const listaRect = listaRef.current.getBoundingClientRect();
-      const posicaoVertical: number = itemRect.top - listaRect.top + itemRect.height / 2 - listaRect.height / 2;
-
-      listaRef?.current?.scrollTo({
-        top: posicaoVertical,
-        behavior: 'smooth',
-      });
-    }
-  }, [data?.data.forecast.forecastday, data?.data.location.localtime, indexAtualHora]);
 
   /* Colcor em um hook personalizado */
   const verificarHoraAtualMemoizado = useMemo(() => {
@@ -40,6 +23,7 @@ const ClimaTempo = () => {
     };
   }, []);
 
+  useScrollToItem({ listaRef, indexAtualHora, data });
 
   if (isLoading || !data || !image) {
     return (
@@ -75,7 +59,7 @@ const ClimaTempo = () => {
             })}
           </ListaHorasStyled>
         </SectionClimaHorasStyled>
-      
+
       </ContainerDivisorStyled>
 
       <ContainerDivisorStyled>
@@ -93,7 +77,7 @@ const ClimaTempo = () => {
             <ClimaProxDias forestday={forestday} key={index} />
           ))}
         </SectionClimaProxDiasStyled>
-        
+
       </ContainerDivisorStyled>
 
     </MainStyled>

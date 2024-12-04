@@ -1,8 +1,5 @@
 import { createGlobalStyle, css, keyframes } from "styled-components";
 import { styledVariable } from "./IU";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
 
 const GlobalStyle = createGlobalStyle`
 :root {

@@ -4,12 +4,10 @@ export const ContainerImagemAtual = styled.section<{
   imagem: string;
   toggleColor: boolean;
 }>`
-  background-image: ${({ imagem }) =>
-    `url("../src/assets/images/weather/${imagem}.jpg")`};
+  background-image: ${({ imagem }) => `url(${imagem})`};
   background-size: cover;
   background-repeat: no-repeat;
   height: 350px;
-  /* width: 100vw; */
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
