@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { IsDark, HeaderStyled } from "./Styles";
 import LogoSpringTrail from "../LogoSpringTrail";
-import { ThemeContext } from "../../contexts/themeContext";
+import { ThemeContext } from "../../Pages/ClimaTempo/Contexts/useContext";
 import { MdLightMode } from "react-icons/md";
 
 const HeaderMain = () => {

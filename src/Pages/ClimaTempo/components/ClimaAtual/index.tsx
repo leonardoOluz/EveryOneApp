@@ -1,8 +1,8 @@
 import { TbTemperatureSun } from "react-icons/tb";
 import { ContainerImagemAtual, ContainerTituloLocalStyled, ContainerWeatherNow } from "./Styled";
-import { ClimaImage } from "../../../styles/StylesClima/StylesClima";
-import { ICurrent, ILocation } from "../../../Interfaces/Weather";
-import { setDateNow, toggleColor } from "../../../utils/ClimaTempoUtils";
+import { ClimaImage } from "../../Styles/StylesClima";
+import { ICurrent, ILocation } from "../../Interface";
+import { setDateNow, toggleColor } from "../../utils";
 
 interface PropsClimaAtual {
   current: ICurrent;
@@ -16,7 +16,8 @@ const ClimaAtual = ({ current, image, location }: PropsClimaAtual) => {
       toggleColor={toggleColor(current.is_day, image)}
     >
       <ContainerTituloLocalStyled>
-        <h2>Tempo agora em {location?.name}, <span>{setDateNow(location?.localtime || new Date())}</span></h2>
+        <h2>{location?.country}, {location?.region}</h2>
+        <p>Tempo agora em {location?.name}, <span>{setDateNow(location?.localtime || new Date())}</span></p>
       </ContainerTituloLocalStyled>
       <ContainerWeatherNow>
         <ul aria-label="lista do tempo atual">

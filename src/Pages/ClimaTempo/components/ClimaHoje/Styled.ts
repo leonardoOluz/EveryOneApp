@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import { SectionClimaStyled } from "../../../styles/StylesClima/StylesClima";
+import {
+  SectionClimaStyled,
+  SubTituloStyled,
+} from "../../Styles/StylesClima";
 
 export const SecaoClimaHojeStyled = styled.section`
   ${SectionClimaStyled}
@@ -62,4 +65,8 @@ export const SecaoClimaHojeStyled = styled.section`
       }
     }
   }
+`;
+
+export const TituloStyleClimaHoje = styled.h2`
+  ${SubTituloStyled}
 `;

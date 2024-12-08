@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { SectionClimaStyled } from "../../styles/StylesClima/StylesClima";
-import imagemFundoTempo from "../../assets/ImagenClimaTempoTwo.jpg";
+import imagemFundoTempo from "../ClimaTempo/assets/ImagenClimaTempoTwo.jpg";
+import { SectionClimaStyled, SubTituloStyled } from "./Styles/StylesClima";
 
 export const MainStyled = styled.main`
   display: flex;
@@ -43,10 +43,26 @@ export const SectionClimaHorasStyled = styled.section`
   ${SectionClimaStyled}
 `;
 
+export const TituloStyledClimaHoras = styled.h2`
+  ${SubTituloStyled}
+`;
+
 export const SectionClimaAstrosStyled = styled.section`
   ${SectionClimaStyled}
 `;
 
 export const SectionClimaProxDiasStyled = styled.section`
   ${SectionClimaStyled}
+`;
+
+export const TituloStyledProxDias = styled.h2`
+  ${SubTituloStyled}
+`;
+
+export const SectionClimaFormPesquisa = styled.section`
+  ${SectionClimaStyled}
+`;
+
+export const TituloStyledFormPesquisa = styled.h2`
+  ${SubTituloStyled}
 `;

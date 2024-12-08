@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
-import { GeolocationHookReturn, UseScrollToItemProps } from "../../Interfaces/Weather";
-import { useReactQueryWeatherForecast } from "../../http/hooks/useHttpWeather";
-import { backgroudImageWeather } from "../../utils/ClimaTempoUtils";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { GeolocationHookReturn, UseScrollToItemProps } from "../Interface";
+import {
+  useReactQueryWeatherForecastCity,
+  useReactQueryWeatherForecastLatLong,
+} from "../api/useApiWeather";
+import { backgroudImageWeather, checkHoursAtual } from "../utils";
+import { ForecastContext } from "../Contexts/useContext";
 
 export const useWeatherScrollObserver = (
   elementRef: React.RefObject<HTMLDivElement>,
@@ -33,7 +37,6 @@ export const useWeatherScrollObserver = (
     };
   }, [elementRef, nameClass]);
 };
-
 export const useGeolocation = (): GeolocationHookReturn => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -55,7 +58,6 @@ export const useGeolocation = (): GeolocationHookReturn => {
 
   return { loading, error, coords };
 };
-
 export const useResize = (): number => {
   const [slidesPerView, setSlidesPerView] = useState<number>(9);
 
@@ -83,44 +85,13 @@ export const useResize = (): number => {
 
   return slidesPerView;
 };
-
-export const useWeatherDadosApi = () => {
-  const { coords, loading } = useGeolocation();
-  const [latitude, setLatitude] = useState<number>(0);
-  const [longitude, setLongitude] = useState<number>(0);
-  const [image, setImage] = useState<string>();
-
-  const { isLoading, data: data } = useReactQueryWeatherForecast(
-    latitude,
-    longitude
-  );
-
-  useEffect(() => {
-    if (!loading && coords) {
-      setLatitude(coords?.latitude);
-      setLongitude(coords?.longitude);
-    }
-    if (data?.data.current) {
-      setImage(backgroudImageWeather(data?.data.current));
-    }
-  }, [longitude, latitude, loading, coords, data?.data]);
-
-  return {
-    isLoading,
-    image,
-    data,
-  };
-};
-
 export const useScrollToItem = ({
   listaRef,
   indexAtualHora,
-  data,
+  dados,
 }: UseScrollToItemProps) => {
-  
   useEffect(() => {
-
-    if (indexAtualHora && listaRef.current && data) {
+    if (indexAtualHora && listaRef.current && dados) {
       const item = listaRef.current.children[indexAtualHora];
       const itemRect = item.getBoundingClientRect();
       const listaRect = listaRef.current.getBoundingClientRect();
@@ -135,11 +106,80 @@ export const useScrollToItem = ({
         behavior: "smooth",
       });
     }
-
   }, [
-    data,
-    data?.data.forecast.forecastday,
-    data?.data.location.localtime,
-    indexAtualHora, listaRef
+    dados,
+    dados?.forecast.forecastday,
+    dados?.location.localtime,
+    indexAtualHora,
+    listaRef,
   ]);
+};
+export const useUserLocation = () => {
+  const { coords } = useGeolocation();
+  const [userLatitude, setUserLatitude] = useState<number>(0);
+  const [userLongitude, setUserLongitude] = useState<number>(0);
+
+  useEffect(() => {
+    if (coords) {
+      setUserLatitude(coords?.latitude);
+      setUserLongitude(coords?.longitude);
+    }
+  }, [coords]);
+
+  return { userLatitude, userLongitude, setUserLatitude, setUserLongitude };
+};
+export const useWeatherForecast = () => {
+  const { userLatitude, userLongitude, setUserLatitude, setUserLongitude } =
+    useUserLocation();
+  const { data: weatherData, isLoading } = useReactQueryWeatherForecastLatLong(
+    userLatitude,
+    userLongitude
+  );
+  const { setData, setImage } = useContext(ForecastContext);
+
+  useEffect(() => {
+    if (weatherData?.data.current) {
+      setImage(backgroudImageWeather(weatherData?.data.current));
+      setData(weatherData.data);
+      setUserLatitude(0);
+      setUserLongitude(0);
+    }
+  }, [weatherData, setData, setImage, setUserLatitude, setUserLongitude]);
+
+  return { weatherData, isLoading };
+};
+export const useWeatherForecastCity = () => {
+  const { setData, setIsLoading, setImage } = useContext(ForecastContext);
+  const [city, setCity] = useState<string>("");
+
+  const {
+    data: weatherData,
+    isLoading,
+    refetch,
+  } = useReactQueryWeatherForecastCity(city);
+
+  useEffect(() => {
+    if (weatherData?.data.current) {
+      setData(weatherData.data);
+      setImage(backgroudImageWeather(weatherData?.data.current));
+      setCity("");
+    }
+  }, [setData, setIsLoading, weatherData, setImage]);
+
+  return {
+    setCity,
+    refetch,
+    isLoading,
+  };
+};
+
+export const useVerificarHoraAtual = () => {
+  const verificarHoraAtualMemoizado = useMemo(() => {
+    return (horaLocal: Date, horaPrevisao: Date) => {
+      // Lógica para comparar as horas
+      return checkHoursAtual(horaLocal, horaPrevisao);
+    };
+  }, []);
+
+  return verificarHoraAtualMemoizado;
 };

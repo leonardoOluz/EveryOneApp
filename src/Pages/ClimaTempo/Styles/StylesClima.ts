@@ -28,7 +28,7 @@ export const ClimaImage = styled.img<{ maxWidth?: string }>`
   object-fit: cover;
 `;
 // Titulos e subtitulos h3
-export const SubTituloStyled = styled.h3`
+export const SubTituloStyled = css`
   margin: 1.6rem 0;
   text-align: center;
   font-size: ${({ theme }) => theme.fontSizeTitle};

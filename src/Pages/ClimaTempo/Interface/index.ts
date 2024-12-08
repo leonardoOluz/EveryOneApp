@@ -81,7 +81,6 @@ export interface IAstro {
   is_moon_up?: number;
   is_sun_up?: number;
 }
-
 export interface IImagesVariables {
   skyBlue: string;
   skyCloudy: string;
@@ -94,11 +93,8 @@ export interface GeolocationHookReturn {
   error: string | null;
   coords: GeolocationCoordinates | null;
 }
-
 export interface UseScrollToItemProps {
   listaRef: React.RefObject<HTMLElement>;
   indexAtualHora: number | undefined;
-  data: {
-    data: IData;
-  } | undefined;
+  dados: IData | null;
 }
