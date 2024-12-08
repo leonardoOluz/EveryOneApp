@@ -1,6 +1,6 @@
-import { ICurrent } from "../../Interfaces/Weather";
-import { imagesDay, imagesNight } from "../../styles/StylesClima/IU";
-import { dateTransform } from "../other/dateTransform";
+import { dateTransform } from "../../../utils/dateTransform";
+import { ICurrent } from "../Interface";
+import { imagesDay, imagesNight } from "../Styles/IU";
 
 export function setDateHoursMinute(date: Date): string {
   const apiDate = new Date(date);
@@ -36,21 +36,26 @@ export function setDateNow(date: Date): string {
 }
 
 export function backgroudImageWeather(current: ICurrent): string {
-  const regRainEasy = /(chuva|chuvisco|garoando|Aguaceiros\sfracos|chovendo)/gi;
-  const regRainHard = /(tempestade|chovendo|pancadas)/gi;
+  const regRainEasy = /(Chuva fraca|chuvisco)/gi;
+  const regRainHard = /(Chuva forte|tempestade|chovendo|pancadas)/gi;
+  const regSkyCloudy = /(Parcialmente nublado|Nublado)/gi;
+  const regSkyCloudyTotal = /(Encoberto|Possibilidade de chuva irregular)/gi;
 
   const images = current.is_day ? imagesDay : imagesNight;
+
+  if (regRainEasy.test(current.condition.text)) {
+    return images.skyCloudyRainEasy;
+  }
 
   if (regRainHard.test(current.condition.text)) {
     return images.skyCloudyRainHard;
   }
-  if (regRainEasy.test(current.condition.text)) {
-    return images.skyCloudyRainEasy;
-  }
-  if (current.cloud >= 25 && current.cloud < 80) {
+
+  if (regSkyCloudy.test(current.condition.text)) {
     return images.skyCloudy;
   }
-  if (current.cloud >= 80) {
+
+  if (current.cloud >= 80 || regSkyCloudyTotal.test(current.condition.text)) {
     return images.skyCloudyTotal;
   }
 
@@ -59,12 +64,16 @@ export function backgroudImageWeather(current: ICurrent): string {
 
 export function toggleColor(day: number, image: string): boolean {
   let isRain: boolean = false;
+
   isRain =
     day === 0 ||
     image.includes(imagesDay.skyCloudyRainEasy) ||
-    image.includes(imagesDay.skyCloudyRainHard)
+    image.includes(imagesDay.skyCloudyRainHard) ||
+    image.includes(imagesDay.skyCloudyTotal)
       ? true
       : false;
+
+
   return isRain;
 }
 

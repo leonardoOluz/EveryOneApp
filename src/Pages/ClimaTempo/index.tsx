@@ -1,31 +1,25 @@
-import { useMemo, useRef, useState } from "react";
-import { useScrollToItem, useWeatherDadosApi } from "../../hooks/WeatherSet";
-import { checkHoursAtual } from "../../utils/ClimaTempoUtils";
-import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaHorasStyled, SectionClimaProxDiasStyled } from "./Styled";
-import { SubTituloStyled } from "../../styles/StylesClima/StylesClima";
+import { useContext, useRef, useState } from "react";
+import { useScrollToItem, useVerificarHoraAtual, useWeatherForecast } from "./hooks";
+import { checkHoursAtual } from "./utils";
+import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaFormPesquisa, SectionClimaHorasStyled, SectionClimaProxDiasStyled, TituloStyledClimaHoras, TituloStyledFormPesquisa, TituloStyledProxDias } from "./Styled";
 import Loader from "../../components/Loader";
-import ClimaAtual from "./ClimaAtual";
-import SectionClimaHoje from "./ClimaHoje";
-import ItemClimaHoras from "./ClimaHoras";
-import ClimaAstros from "./CLimaAstros";
-import ClimaProxDias from "./ClimaProxDias";
+import ClimaAtual from "./components/ClimaAtual";
+import SectionClimaHoje from "./components/ClimaHoje";
+import ItemClimaHoras from "./components/ClimaHoras";
+import ClimaAstros from "./components/CLimaAstros";
+import ClimaProxDias from "./components/ClimaProxDias";
+import { ForecastContext } from "./Contexts/useContext";
+import ClimaFormPesquisa from "./components/ClimaFormPesquisa";
 
 const ClimaTempo = () => {
   const listaRef = useRef<HTMLUListElement>(null);
-  const { data, isLoading, image } = useWeatherDadosApi();
+  const { data: dados, image } = useContext(ForecastContext);
   const [indexAtualHora, setIndexAtualHora] = useState<number>(-1);
+  const { isLoading } = useWeatherForecast();
+  const verificarHoraAtualMemoizado = useVerificarHoraAtual();
+  useScrollToItem({ listaRef, indexAtualHora, dados });
 
-  /* Colcor em um hook personalizado */
-  const verificarHoraAtualMemoizado = useMemo(() => {
-    return (horaLocal: Date, horaPrevisao: Date) => {
-      // Lógica para comparar as horas
-      return checkHoursAtual(horaLocal, horaPrevisao)
-    };
-  }, []);
-
-  useScrollToItem({ listaRef, indexAtualHora, data });
-
-  if (isLoading || !data || !image) {
+  if (isLoading || !dados || !image) {
     return (
       <Loader />
     )
@@ -33,27 +27,33 @@ const ClimaTempo = () => {
 
   return (
     <MainStyled role="main">
-
-      <ClimaAtual current={data.data.current} image={image} location={data.data.location} />
+      <ClimaAtual current={dados.current} image={image} location={dados.location} />
 
       <ContainerDivisorStyled>
 
-        <SectionClimaHoje day={data.data.forecast.forecastday[1].day} />
+        <SectionClimaFormPesquisa aria-labelledby="formulario-busca">
+          <TituloStyledFormPesquisa id="formulario-busca">Buscar Cidade</TituloStyledFormPesquisa>
+          <ClimaFormPesquisa />
+        </SectionClimaFormPesquisa>
 
-        <SectionClimaHorasStyled>
-          <SubTituloStyled>Previsão das próximas horas</SubTituloStyled>
+      </ContainerDivisorStyled>
+
+      <ContainerDivisorStyled>
+        <SectionClimaHoje day={dados.forecast.forecastday[1].day} />
+
+        <SectionClimaHorasStyled aria-labelledby="horas-titulo">
+          <TituloStyledClimaHoras id="horas-titulo">Previsão das próximas horas</TituloStyledClimaHoras>
           <ListaHorasStyled ref={listaRef}>
-            {data?.data.forecast.forecastday[1].hour.map((hour, index) => {
-              const isAtivo: boolean = verificarHoraAtualMemoizado(data.data.location.localtime!, hour.time!);
+            {dados.forecast.forecastday[1].hour.map((hour, index) => {
+              const isAtivo: boolean = verificarHoraAtualMemoizado(dados.location.localtime!, hour.time!);
               if (isAtivo && index !== indexAtualHora) {
                 setIndexAtualHora(index);
               }
-
               return (
                 <ItemClimaHoras
                   key={index}
                   hour={hour}
-                  active={checkHoursAtual(data.data.location.localtime!, hour.time!)}
+                  active={checkHoursAtual(dados.location.localtime!, hour.time!)}
                 />
               )
             })}
@@ -64,22 +64,21 @@ const ClimaTempo = () => {
 
       <ContainerDivisorStyled>
 
-        <SectionClimaAstrosStyled>
+        <SectionClimaAstrosStyled aria-labelledby="detalhes-astros">
           <ClimaAstros
-            astro={data.data.forecast.forecastday[1].astro}
-            day={data.data.forecast.forecastday[1].day}
+            astro={dados.forecast.forecastday[1].astro}
+            day={dados.forecast.forecastday[1].day}
           />
         </SectionClimaAstrosStyled>
 
-        <SectionClimaProxDiasStyled>
-          <SubTituloStyled>Clima dos proximos dias</SubTituloStyled>
-          {data.data.forecast.forecastday.map((forestday, index) => (
+        <SectionClimaProxDiasStyled aria-labelledby="proximos-dias">
+          <TituloStyledProxDias id="proximos-dias">Clima dos proximos dias</TituloStyledProxDias>
+          {dados.forecast.forecastday.map((forestday, index) => (
             <ClimaProxDias forestday={forestday} key={index} />
           ))}
         </SectionClimaProxDiasStyled>
 
       </ContainerDivisorStyled>
-
     </MainStyled>
   )
 };

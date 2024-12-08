@@ -1,8 +1,8 @@
 import { LiaTemperatureHighSolid, LiaTemperatureLowSolid } from "react-icons/lia";
-import { IForecastday } from "../../../Interfaces/Weather";
-import { ValueRemClima } from "../../../styles/StylesClima/EnumsClima";
-import { ClimaImage, DivisorStyled } from "../../../styles/StylesClima/StylesClima"
-import { setDateWeekMonthDay } from "../../../utils/ClimaTempoUtils";
+import { IForecastday } from "../../Interface";
+import { ValueRemClima } from "../../Styles/EnumsClima";
+import { ClimaImage, DivisorStyled } from "../../Styles/StylesClima"
+import { setDateWeekMonthDay } from "../../utils";
 import { ContainerCliamaProxDiasStyled, FigcaptionClimaProxDiasStyled, ItemClimaProxDiasStyled, ItemFigureClimaProxDiasStyled, ListaClimaProxDiasStyled, SubTituloClimaProxDiasStyled } from "./Styled";
 
 interface PropsCliaProxDias {

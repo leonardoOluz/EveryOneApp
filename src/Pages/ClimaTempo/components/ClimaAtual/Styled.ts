@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { imagesDay } from "../../Styles/IU";
 
 export const ContainerImagemAtual = styled.section<{
   imagem: string;
@@ -7,17 +8,21 @@ export const ContainerImagemAtual = styled.section<{
   background-image: ${({ imagem }) => `url(${imagem})`};
   background-size: cover;
   background-repeat: no-repeat;
-  height: 350px;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  padding: 0 1.6rem;
-  ${({ toggleColor, theme }) =>
-    toggleColor ? "color: white" : `color: ${theme.quinary}`}
+  padding: 1.6rem;
+  ${({ toggleColor, theme, imagem }) =>
+    toggleColor
+      ? "color: white"
+      : imagem.includes(imagesDay.skyCloudy)
+      ? "color: #000"
+      : `color: ${theme.quinary}`}
 `;
 
 export const ContainerTituloLocalStyled = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   background-color: ${({ theme }) => theme.primary};
   margin-top: 2.4rem;
@@ -29,19 +34,14 @@ export const ContainerTituloLocalStyled = styled.div`
     font-size: ${({ theme }) => theme.fontSizeTitle};
     box-sizing: border-box;
     color: ${({ theme }) => theme.quinary};
-    span {
-      font-size: ${({ theme }) => theme.fontSizeBig};
-      color: ${({ theme }) => theme.quinary};
-    }
+  }
+  p {
+    font-size: ${({ theme }) => theme.fontSizeBig};
+    color: ${({ theme }) => theme.quinary};
   }
 
   @media screen and (max-width: 768px) {
-    h2 {
-      /* font-size: ${({ theme }) => theme.fontSizeBig}; */
-      span {
-        font-size: ${({ theme }) => theme.fontSizeMedium};
-      }
-    }
+    align-items: flex-start;
   }
 `;
 
@@ -54,10 +54,10 @@ export const ContainerWeatherNow = styled.div`
     flex-direction: column;
     li {
       figure {
-        width: 195px;
+        /* width: 195px; */
         display: flex;
         justify-content: left;
-        gap: 1rem;
+        /* gap: 1rem; */
         align-items: center;
 
         .figacaption-temp::after {
@@ -67,6 +67,11 @@ export const ContainerWeatherNow = styled.div`
         figcaption {
           font-size: ${({ theme }) => theme.fontSizeTitle};
           font-weight: 800;
+
+          @media screen and (max-width: 450px) {
+            font-size: ${({ theme }) => theme.fontSizeBig};
+            font-weight: 600;
+          }
         }
 
         .hiddenVissible {
@@ -79,7 +84,7 @@ export const ContainerWeatherNow = styled.div`
         }
 
         @media screen and (max-width: 450px) {
-          font-size: ${({ theme }) => theme.fontSizeBig};
+          /* font-size: ${({ theme }) => theme.fontSizeBig}; */
           font-weight: 600;
         }
       }

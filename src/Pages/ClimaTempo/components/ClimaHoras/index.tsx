@@ -1,12 +1,12 @@
 import { FaRegClock, FaTemperatureLow } from "react-icons/fa";
-import { IHours } from "../../../Interfaces/Weather";
-import { ClimaImage, DivisorStyled } from "../../../styles/StylesClima/StylesClima";
-import { setDateHoursMinute } from "../../../utils/ClimaTempoUtils";
+import { IHours } from "../../Interface";
+import { ClimaImage, DivisorStyled } from "../../Styles/StylesClima";
+import { setDateHoursMinute } from "../../utils";
 import { FigureStyled, ItemListaHoraStyled } from "./Styled";
 import { PiWindThin } from "react-icons/pi";
 import { WiHumidity } from "react-icons/wi";
 import { memo } from "react";
-import { ValueRemClima } from "../../../styles/StylesClima/EnumsClima";
+import { ValueRemClima } from "../../Styles/EnumsClima";
 
 interface PropsClimaHoras {
     hour: IHours;
@@ -23,7 +23,7 @@ const ItemClimaHoras = ({ hour, active }: PropsClimaHoras) => {
         <DivisorStyled></DivisorStyled>
         <FigureStyled>
             <FaTemperatureLow aria-label="icone de temperatura" title="icone de temperatura" />
-            <figcaption>+{hour.temp_c}°C</figcaption>
+            <figcaption>{hour.temp_c}°C</figcaption>
         </FigureStyled>
         <DivisorStyled className=" hiddenComponente"></DivisorStyled>
         <FigureStyled className="hiddenComponente">

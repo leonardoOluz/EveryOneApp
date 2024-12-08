@@ -1,20 +1,20 @@
 import { PiWind } from "react-icons/pi";
-import { SpanDetalhesClimaTempoStyled, SubTituloStyled, ClimaImage } from "../../../styles/StylesClima/StylesClima";
-import { SecaoClimaHojeStyled } from "./Styled";
+import { SpanDetalhesClimaTempoStyled, ClimaImage } from "../../Styles/StylesClima";
+import { SecaoClimaHojeStyled, TituloStyleClimaHoje } from "./Styled";
 import { WiHumidity } from "react-icons/wi";
 import { GiWaterSplash } from "react-icons/gi";
-import { IDay } from "../../../Interfaces/Weather";
-import { setTotalPrecipMm } from "../../../utils/ClimaTempoUtils";
+import { IDay } from "../../Interface";
+import { setTotalPrecipMm } from "../../utils";
 import { FaTemperatureArrowDown, FaTemperatureArrowUp } from "react-icons/fa6";
-import { ValueRemClima } from "../../../styles/StylesClima/EnumsClima";
+import { ValueRemClima } from "../../Styles/EnumsClima";
 
 interface PropsClimaHoje {
   day: IDay;
 }
 const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
   return (
-    <SecaoClimaHojeStyled>
-      <SubTituloStyled>Previsão do dia</SubTituloStyled>
+    <SecaoClimaHojeStyled aria-labelledby="previsao-do-dia">
+      <TituloStyleClimaHoje id="previsao-do-dia">Previsão do dia</TituloStyleClimaHoje>
       <ul aria-label="lista de informações do clima hoje">
         <li>
           <figure>

@@ -1,8 +1,8 @@
 import { WiSunrise, WiSunset } from "react-icons/wi";
-import { SpanDetalhesClimaTempoStyled, SubTituloStyled } from "../../../styles/StylesClima/StylesClima";
+import { SpanDetalhesClimaTempoStyled } from "../../Styles/StylesClima";
 import { GiEvilMoon, GiSunRadiations } from "react-icons/gi";
-import { IAstro, IDay } from "../../../Interfaces/Weather";
-import { ContainerClimaAtrosStyled, FigcaptionClimaAstrosStyled, ItemFigureClimaAstrosStyled, ListaClimaAstrosStyled } from "./Styled";
+import { IAstro, IDay } from "../../Interface";
+import { ContainerClimaAtrosStyled, FigcaptionClimaAstrosStyled, ItemFigureClimaAstrosStyled, ListaClimaAstrosStyled, TituloStyledClimaAstros } from "./Styled";
 
 interface PropsClimaDetalhes {
   astro: IAstro;
@@ -12,9 +12,9 @@ interface PropsClimaDetalhes {
 const ClimaAstros = ({ astro, day }: PropsClimaDetalhes) => {
   return (
     <>
-      <SubTituloStyled>
+      <TituloStyledClimaAstros id="detalhes-astros">
         Detalhes dos Astros
-      </SubTituloStyled>
+      </TituloStyledClimaAstros>
 
       <ListaClimaAstrosStyled>
         <li>
@@ -56,7 +56,7 @@ const ClimaAstros = ({ astro, day }: PropsClimaDetalhes) => {
             <SpanDetalhesClimaTempoStyled>{astro.moon_phase}</SpanDetalhesClimaTempoStyled>
           </ItemFigureClimaAstrosStyled>
         </li>
-        
+
       </ListaClimaAstrosStyled>
     </>
   )
