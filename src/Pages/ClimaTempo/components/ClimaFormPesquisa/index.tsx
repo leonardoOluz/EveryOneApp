@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { ClimaContainerInputButtonStyled, ClimaFormPesquisaStyled } from "./Styled";
 import { useWeatherForecastCity } from "../../hooks";
 import Loader from "../../../../components/Loader";
+import { SpanAlert } from "../../Styles/StylesClima";
 
 const ClimaFormPesquisa = () => {
   const [city, setCity] = useState<string>("");
-  const { setCity: setCityHttp, refetch, isLoading } = useWeatherForecastCity();
+  const { setCity: setCityHttp, refetch, isLoading, isError } = useWeatherForecastCity();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setCityHttp(city)
@@ -19,7 +20,7 @@ const ClimaFormPesquisa = () => {
   return (<>
     {isLoading && <Loader />}
     <ClimaFormPesquisaStyled onSubmit={e => handleSubmit(e)} aria-label="formulario de pesquisa de cidade">
-      <label htmlFor="city-input">Digite o nome da cidade:</label>
+      {isError ? <SpanAlert role="alert">Ops, Algo de errado aconteceu, verifique o nome da cidade</SpanAlert> : <label htmlFor="city-input">Digite o nome da cidade:</label>}
       <ClimaContainerInputButtonStyled>
         <input
           type="text"
@@ -35,4 +36,4 @@ const ClimaFormPesquisa = () => {
 
 };
 
-export default ClimaFormPesquisa
+export default memo(ClimaFormPesquisa)

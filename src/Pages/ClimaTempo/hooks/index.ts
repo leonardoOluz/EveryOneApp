@@ -156,6 +156,7 @@ export const useWeatherForecastCity = () => {
     data: weatherData,
     isLoading,
     refetch,
+    isError
   } = useReactQueryWeatherForecastCity(city);
 
   useEffect(() => {
@@ -170,9 +171,9 @@ export const useWeatherForecastCity = () => {
     setCity,
     refetch,
     isLoading,
+    isError
   };
 };
-
 export const useVerificarHoraAtual = () => {
   const verificarHoraAtualMemoizado = useMemo(() => {
     return (horaLocal: Date, horaPrevisao: Date) => {

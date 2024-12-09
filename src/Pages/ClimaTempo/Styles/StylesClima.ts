@@ -48,9 +48,16 @@ export const SpanDetalhesClimaTempoStyled = styled.span`
   font-weight: bold;
   box-sizing: border-box;
 `;
-
 // divisor span estiizado
 export const DivisorStyled = styled.span`
   height: 1.6rem;
   border: 1px solid ${({ theme }) => theme.quinary};
+`;
+//Alert Error span
+export const SpanAlert = styled.span`
+  font-size: ${({ theme }) => theme.fontSizeMedium};
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 10px;
 `;
