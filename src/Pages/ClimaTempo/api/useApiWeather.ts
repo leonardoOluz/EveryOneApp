@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import axios from "axios";
 import { IData } from "../Interface";
 
@@ -55,17 +55,27 @@ export const useReactQueryWeatherForecastLatLong = (
 
   return query;
 };
-export const useReactQueryWeatherForecastCity = (city: string) => {
+
+interface EmptyQueryResult {
+  data: null;
+  isLoading: false;
+  refetch: () => void;
+  isError: boolean;
+}
+
+export const useReactQueryWeatherForecastCity = (
+  city: string
+): UseQueryResult<{ data: IData }, unknown> | EmptyQueryResult => {
   const { getWeatherForecastCity } = useApiWeather();
 
-  const query = useQuery<{ data: IData }>({
+  const query = useQuery<{ data: IData }, unknown>({
     queryKey: ["weatherForecastCity", city],
     queryFn: () => getWeatherForecastCity(city),
     enabled: !!city,
   });
 
   if (!city) {
-    return { data: null, isLoading: false, refetch: () => {} };
+    return { data: null, isLoading: false, refetch: () => {}, isError: false };
   }
 
   return query;
