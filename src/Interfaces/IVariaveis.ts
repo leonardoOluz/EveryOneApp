@@ -13,6 +13,8 @@ export interface IVariaveis {
     quaternary: string;
     quinary: string;
   };
+  white: string;
+  black: string;
   fontesFamily: {
     primary: string;
     secundary: string;

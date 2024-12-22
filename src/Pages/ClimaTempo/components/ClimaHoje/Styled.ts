@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import {
-  SectionClimaStyled,
-  SubTituloStyled,
+  SectionClimaStyledMix,
+  SubTituloStyledMix,
 } from "../../Styles/StylesClima";
 
 export const SecaoClimaHojeStyled = styled.section`
-  ${SectionClimaStyled}
+  ${SectionClimaStyledMix}
   ul {
     display: flex;
     flex-direction: column;
@@ -40,11 +40,6 @@ export const SecaoClimaHojeStyled = styled.section`
     font-size: ${({ theme }) => theme.fontSizeBig};
   }
 
-  @media screen and (max-width: 810px) {
-    width: 100%;
-    margin: 1rem 0;
-  }
-
   @media screen and (max-width: 450px) {
     max-height: 100%;
 
@@ -68,5 +63,5 @@ export const SecaoClimaHojeStyled = styled.section`
 `;
 
 export const TituloStyleClimaHoje = styled.h2`
-  ${SubTituloStyled}
+  ${SubTituloStyledMix}
 `;

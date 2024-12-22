@@ -7,6 +7,8 @@ declare module "styled-components" {
     tertiary: string;
     quaternary: string;
     quinary: string;
+    white: string;  
+    black: string;
     fontesFamily?: string;
     fontSizeTitle: string
     fontSizeBig: string;

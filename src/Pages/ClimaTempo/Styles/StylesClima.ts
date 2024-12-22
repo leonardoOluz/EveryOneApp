@@ -5,19 +5,17 @@ import { css } from "styled-components";
 /* Clima Tempo  */
 
 // Seção estilizada
-export const SectionClimaStyled = css`
+export const SectionClimaStyledMix = css`
   padding: 1.6rem;
-  width: 45%;
-  max-height: 35rem;
+  max-height: 45rem;
   background-color: ${({ theme }) => theme.secondary};
+  box-sizing: border-box;
+  width: 100%;
+  margin: 1rem 0;
 
-  @media screen and (max-width: 810px) {
-    width: 100%;
-    margin: 1rem 0;
-  }
-
-  @media screen and (max-width: 600px) {
-    max-height: 45rem;
+  @media screen and (min-width: 809px) {
+    margin: 0;
+    width: 45%;
   }
 `;
 // Imagem estilizada
@@ -27,14 +25,29 @@ export const ClimaImage = styled.img<{ maxWidth?: string }>`
   border-radius: 0.8rem;
   object-fit: cover;
 `;
-// Titulos e subtitulos h3
-export const SubTituloStyled = css`
+// Titulos e subtitulos h2 / h3
+export const SubTituloStyledMix = css`
   margin: 1.6rem 0;
   text-align: center;
   font-size: ${({ theme }) => theme.fontSizeTitle};
   background-color: ${({ theme }) => theme.quinary};
   color: ${({ theme }) => theme.secondary};
   border-radius: 0.8rem;
+`;
+// Estilizando figure Clima atual
+export const AlignTemAtualMix = css`
+  &.alingTemAtual {
+    justify-content: space-around;
+    figcaption {
+      font-size: ${({ theme }) => theme.fontSizeBig};
+    }
+  }
+`;
+// Estilizando figcaption
+export const FigcaptionMixTemp = css`
+  &.figcaption-temp::after {
+    content: " °C";
+  }
 `;
 // Span estilizado
 export const SpanDetalhesClimaTempoStyled = styled.span`
@@ -60,4 +73,13 @@ export const SpanAlert = styled.span`
   border: 1px solid #f5c6cb;
   color: #721c24;
   padding: 10px;
+`;
+// Span hidden acessibilidade
+export const SpanAcessibilidadeHidden = styled.span`
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
 `;

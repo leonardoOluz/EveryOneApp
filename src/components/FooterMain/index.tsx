@@ -1,9 +1,9 @@
-import { FooterStyled } from "./Styles";
+import { FooterStyled, TextFooterStyled } from "./Styles";
 
 const FooterMain = () => {
   return (
     <FooterStyled>
-      <h1>EveryOne App</h1>
+      <TextFooterStyled>EveryOne App</TextFooterStyled>
     </FooterStyled>
   )
 }

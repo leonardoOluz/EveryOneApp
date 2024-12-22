@@ -11,6 +11,12 @@ export function setDateHoursMinute(date: Date): string {
   }`;
 }
 
+export function setDateHour(date: Date): string {
+  const apiDate = new Date(date);
+  const hour = apiDate.getHours();
+  return `${hour < 10 ? `0${hour}` : hour}`;
+}
+
 export function setDateWeekMonthDay(date: Date): string {
   const apiDate = dateTransform(date);
   const day = apiDate.toLocaleString("pt-BR", {
@@ -62,19 +68,16 @@ export function backgroudImageWeather(current: ICurrent): string {
   return images.skyBlue;
 }
 
-export function toggleColor(day: number, image: string): boolean {
-  let isRain: boolean = false;
-
-  isRain =
-    day === 0 ||
+export function toggleColor(isDay: number, image: string): boolean {
+  let isDark: boolean = false;
+  isDark =
+    isDay != 1 ||
     image.includes(imagesDay.skyCloudyRainEasy) ||
     image.includes(imagesDay.skyCloudyRainHard) ||
-    image.includes(imagesDay.skyCloudyTotal)
+    image.includes(imagesNight.skyCloudyTotal)
       ? true
       : false;
-
-
-  return isRain;
+  return isDark;
 }
 
 export function setTotalPrecipMm(precip: number): string {
@@ -90,3 +93,23 @@ export function checkHoursAtual(currentData: Date, hours: Date): boolean {
   }
   return isNow;
 }
+
+export function converstionNumberTemp(temp: number): number {
+  const altTemp: number = temp / 4;
+  return altTemp;
+}
+
+export const debounce = <T extends (...args: unknown[]) => void>(
+  fn: T,
+  delay: number
+): ((...args: Parameters<T>) => void) => {
+  let timeoutId: NodeJS.Timeout | null;
+  return (...args: Parameters<T>) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+};

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SubTituloStyled } from "../../Styles/StylesClima";
+import { SubTituloStyledMix } from "../../Styles/StylesClima";
 
 export const ListaClimaAstrosStyled = styled.ul`
   margin-top: 2.4rem;
@@ -26,5 +26,5 @@ export const FigcaptionClimaAstrosStyled = styled.figcaption`
 `;
 
 export const TituloStyledClimaAstros = styled.h2`
-  ${SubTituloStyled}
+  ${SubTituloStyledMix}
 `;

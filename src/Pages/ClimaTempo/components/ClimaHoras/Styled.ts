@@ -8,7 +8,9 @@ export const ItemListaHoraStyled = styled.li<{ active: boolean }>`
 
   background-color: ${({ theme, active }) =>
     active ? theme.quinary : theme.secondary};
+  
   color: ${({ theme, active }) => (active ? theme.secondary : theme.quinary)};
+
   border-radius: 0.8rem;
 
   border-bottom: 1px solid

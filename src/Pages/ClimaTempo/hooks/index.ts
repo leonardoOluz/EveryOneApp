@@ -1,12 +1,37 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { GeolocationHookReturn, UseScrollToItemProps } from "../Interface";
+import {
+  GeolocationHookReturn,
+  IHours,
+  UseScrollToItemProps,
+} from "../Interface";
 import {
   useReactQueryWeatherForecastCity,
   useReactQueryWeatherForecastLatLong,
 } from "../api/useApiWeather";
-import { backgroudImageWeather, checkHoursAtual } from "../utils";
+import { backgroudImageWeather, checkHoursAtual, debounce } from "../utils";
 import { ForecastContext } from "../Contexts/useContext";
+import { breakpoints } from "../Styles/EnumsClima";
 
+export const useNewResize = (): number => {
+  const [slidesPerView, setSlidesPerView] = useState<number>(24);
+
+  useEffect(() => { 
+    const handleResize = () => {
+      const breakpoint = breakpoints.find(
+        (bp) => bp.width >= window.innerWidth
+      );
+      if (breakpoint) {
+        setSlidesPerView(breakpoint.slidesPerView);
+      }
+    };
+    const debouncedHandleResize = debounce(handleResize, 100);
+    window.addEventListener("resize", debouncedHandleResize);
+    return () => {
+      window.removeEventListener("resize", debouncedHandleResize);
+    };
+  }, []);
+  return slidesPerView;
+};
 export const useWeatherScrollObserver = (
   elementRef: React.RefObject<HTMLDivElement>,
   nameClass: string
@@ -58,33 +83,6 @@ export const useGeolocation = (): GeolocationHookReturn => {
 
   return { loading, error, coords };
 };
-export const useResize = (): number => {
-  const [slidesPerView, setSlidesPerView] = useState<number>(9);
-
-  useEffect(() => {
-    const resize = () => {
-      if (window.innerWidth < 400) {
-        return setSlidesPerView(3);
-      }
-      if (window.innerWidth < 768) {
-        return setSlidesPerView(4);
-      }
-      if (window.innerWidth < 1025) {
-        return setSlidesPerView(6);
-      }
-      if (window.innerWidth > 1025) {
-        return setSlidesPerView(9);
-      }
-    };
-
-    window.addEventListener("resize", resize);
-    return () => {
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return slidesPerView;
-};
 export const useScrollToItem = ({
   listaRef,
   indexAtualHora,
@@ -115,16 +113,22 @@ export const useScrollToItem = ({
   ]);
 };
 export const useUserLocation = () => {
-  const { coords } = useGeolocation();
+  const { coords, error } = useGeolocation();
   const [userLatitude, setUserLatitude] = useState<number>(0);
   const [userLongitude, setUserLongitude] = useState<number>(0);
 
   useEffect(() => {
+    if (error) {
+      // se ocorrer um erro de geolocalizacao, defina as coordenadas padrao
+      setUserLatitude(-23.4600871);
+      setUserLongitude(-46.6964897);
+    }
+
     if (coords) {
       setUserLatitude(coords?.latitude);
       setUserLongitude(coords?.longitude);
     }
-  }, [coords]);
+  }, [coords, error]);
 
   return { userLatitude, userLongitude, setUserLatitude, setUserLongitude };
 };
@@ -156,7 +160,7 @@ export const useWeatherForecastCity = () => {
     data: weatherData,
     isLoading,
     refetch,
-    isError
+    isError,
   } = useReactQueryWeatherForecastCity(city);
 
   useEffect(() => {
@@ -171,7 +175,7 @@ export const useWeatherForecastCity = () => {
     setCity,
     refetch,
     isLoading,
-    isError
+    isError,
   };
 };
 export const useVerificarHoraAtual = () => {
@@ -183,4 +187,40 @@ export const useVerificarHoraAtual = () => {
   }, []);
 
   return verificarHoraAtualMemoizado;
+};
+export const useLimiteHoursTemp = (
+  hours: IHours[],
+  dataAtual: Date
+): IHours[] => {
+  const [horas, setHoras] = useState<IHours[]>([]);
+  const quantiNumberTemp = useNewResize();
+  const indexAtual = hours.findIndex((hours) =>
+    checkHoursAtual(hours.time!, dataAtual)
+  );
+
+  useEffect(() => {
+    if (quantiNumberTemp === 24) {
+      setHoras(hours);
+    } else if (indexAtual - quantiNumberTemp / 2 < 0) {
+      setHoras(
+        hours.slice(indexAtual - indexAtual, indexAtual + quantiNumberTemp / 2)
+      );
+    } else if (indexAtual + quantiNumberTemp / 2 > hours.length) {
+      setHoras(
+        hours.slice(
+          indexAtual - quantiNumberTemp / 2,
+          indexAtual + quantiNumberTemp / 2
+        )
+      );
+    } else {
+      setHoras(
+        hours.slice(
+          indexAtual - quantiNumberTemp / 2,
+          indexAtual + quantiNumberTemp / 2
+        )
+      );
+    }
+  }, [hours, indexAtual, quantiNumberTemp]);
+
+  return horas;
 };
