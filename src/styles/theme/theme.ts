@@ -1,5 +1,5 @@
 import { DefaultTheme } from "styled-components/dist/types";
-import { styledVariable } from "../IU";
+import { styledVariable, ValueRem } from "../IU";
 
 export const themeLight: DefaultTheme = {
   primary: styledVariable.colorsSummer.primary,
@@ -8,10 +8,12 @@ export const themeLight: DefaultTheme = {
   quaternary: styledVariable.colorsSummer.quaternary,
   quinary: styledVariable.colorsSummer.quinary,
   fontesFamily: styledVariable.fontesFamily.secundary,
-  fontSizeTitle: "3.2rem",
-  fontSizeBig: "2.4rem",
-  fontSizeMedium: "1.6rem",
-  fontSizeSmall: "1rem",
+  white: styledVariable.white,
+  black: styledVariable.black,
+  fontSizeTitle: ValueRem.rem3n2,
+  fontSizeBig: ValueRem.rem2n4,
+  fontSizeMedium: ValueRem.rem1n6,
+  fontSizeSmall: ValueRem.rem1,
 };
 
 export const themeDark: DefaultTheme = {
@@ -21,8 +23,10 @@ export const themeDark: DefaultTheme = {
   quaternary: styledVariable.colorsBlue.quaternary,
   quinary: styledVariable.colorsBlue.quinary,
   fontesFamily: styledVariable.fontesFamily.primary,
-  fontSizeTitle: "3.2rem",
-  fontSizeBig: "2.4rem",
-  fontSizeMedium: "1.6rem",
-  fontSizeSmall: "1rem"
+  white: styledVariable.white,
+  black: styledVariable.black,
+  fontSizeTitle: ValueRem.rem3n2,
+  fontSizeBig: ValueRem.rem2n4,
+  fontSizeMedium: ValueRem.rem1n6,
+  fontSizeSmall: ValueRem.rem1,
 };

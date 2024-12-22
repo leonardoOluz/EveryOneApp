@@ -1,15 +1,16 @@
 import { useContext, useRef, useState } from "react";
 import { useScrollToItem, useVerificarHoraAtual, useWeatherForecast } from "./hooks";
 import { checkHoursAtual } from "./utils";
-import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaFormPesquisa, SectionClimaHorasStyled, SectionClimaProxDiasStyled, TituloStyledClimaHoras, TituloStyledFormPesquisa, TituloStyledProxDias } from "./Styled";
+import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaFormPesquisa, SectionClimaGraficoTemp, SectionClimaHorasStyled, SectionClimaProxDiasStyled, TituloPrincipalStyled, TituloStyledClimaHoras, TituloStyledFormPesquisa, TituloStyledGraficoTemp, TituloStyledProxDias } from "./Styled";
 import Loader from "../../components/Loader";
-import ClimaAtual from "./components/ClimaAtual";
+import SectionClimaAtual from "./components/ClimaAtual";
 import SectionClimaHoje from "./components/ClimaHoje";
 import ItemClimaHoras from "./components/ClimaHoras";
 import ClimaAstros from "./components/CLimaAstros";
 import ClimaProxDias from "./components/ClimaProxDias";
 import { ForecastContext } from "./Contexts/useContext";
 import ClimaFormPesquisa from "./components/ClimaFormPesquisa";
+import ClimaTempDiarioGrafico from "./components/ClimaTempDiarioGrafico";
 
 const ClimaTempo = () => {
   const listaRef = useRef<HTMLUListElement>(null);
@@ -27,7 +28,10 @@ const ClimaTempo = () => {
 
   return (
     <MainStyled role="main">
-      <ClimaAtual current={dados.current} image={image} location={dados.location} />
+
+      <TituloPrincipalStyled>Previsão do tempo</TituloPrincipalStyled>
+
+      <SectionClimaAtual current={dados.current} image={image} location={dados.location} />
 
       <ContainerDivisorStyled>
 
@@ -36,6 +40,14 @@ const ClimaTempo = () => {
           <ClimaFormPesquisa />
         </SectionClimaFormPesquisa>
 
+        <SectionClimaGraficoTemp>
+          <TituloStyledGraficoTemp>Temperatura diaría</TituloStyledGraficoTemp>
+          <ClimaTempDiarioGrafico
+            hours={dados.forecast.forecastday[1].hour}
+            dataAtual={dados.location.localtime!}
+          />
+        </SectionClimaGraficoTemp>
+        
       </ContainerDivisorStyled>
 
       <ContainerDivisorStyled>
@@ -44,11 +56,15 @@ const ClimaTempo = () => {
         <SectionClimaHorasStyled aria-labelledby="horas-titulo">
           <TituloStyledClimaHoras id="horas-titulo">Previsão das próximas horas</TituloStyledClimaHoras>
           <ListaHorasStyled ref={listaRef}>
+
             {dados.forecast.forecastday[1].hour.map((hour, index) => {
+
               const isAtivo: boolean = verificarHoraAtualMemoizado(dados.location.localtime!, hour.time!);
+
               if (isAtivo && index !== indexAtualHora) {
                 setIndexAtualHora(index);
               }
+
               return (
                 <ItemClimaHoras
                   key={index}
@@ -57,6 +73,7 @@ const ClimaTempo = () => {
                 />
               )
             })}
+
           </ListaHorasStyled>
         </SectionClimaHorasStyled>
 
@@ -79,6 +96,7 @@ const ClimaTempo = () => {
         </SectionClimaProxDiasStyled>
 
       </ContainerDivisorStyled>
+
     </MainStyled>
   )
 };

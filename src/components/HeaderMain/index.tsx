@@ -5,7 +5,7 @@ import { ThemeContext } from "../../Pages/ClimaTempo/Contexts/useContext";
 import { MdLightMode } from "react-icons/md";
 
 const HeaderMain = () => {
-  const [isScrolled, setIsScrolled] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext)
 
   useEffect(() => {

@@ -3,6 +3,8 @@ import { ClimaContainerInputButtonStyled, ClimaFormPesquisaStyled } from "./Styl
 import { useWeatherForecastCity } from "../../hooks";
 import Loader from "../../../../components/Loader";
 import { SpanAlert } from "../../Styles/StylesClima";
+import InputPesquisaClima from "./InputPesquisaClima";
+import BtnPesquisaClima from "./BtnPesquisaClima";
 
 const ClimaFormPesquisa = () => {
   const [city, setCity] = useState<string>("");
@@ -20,16 +22,13 @@ const ClimaFormPesquisa = () => {
   return (<>
     {isLoading && <Loader />}
     <ClimaFormPesquisaStyled onSubmit={e => handleSubmit(e)} aria-label="formulario de pesquisa de cidade">
-      {isError ? <SpanAlert role="alert">Ops, Algo de errado aconteceu, verifique o nome da cidade</SpanAlert> : <label htmlFor="city-input">Digite o nome da cidade:</label>}
+      {isError ?
+        <SpanAlert role="alert">Ops, Algo de errado aconteceu, verifique o nome da cidade</SpanAlert>
+        : <label htmlFor="city-input">Digite o nome da cidade:</label>
+      }
       <ClimaContainerInputButtonStyled>
-        <input
-          type="text"
-          id="city-input"
-          placeholder="Digite uma cidade"
-          about="Digite uma cidade"
-          value={city}
-          onChange={e => setCity(e.target.value)} />
-        <button type="submit">Buscar</button>
+        <InputPesquisaClima city={city} setCity={setCity} id="city-input" />
+        <BtnPesquisaClima children="Buscar" tipo="submit"/>
       </ClimaContainerInputButtonStyled>
     </ClimaFormPesquisaStyled>
   </>)

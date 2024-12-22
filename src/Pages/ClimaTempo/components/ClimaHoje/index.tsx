@@ -16,12 +16,14 @@ const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
     <SecaoClimaHojeStyled aria-labelledby="previsao-do-dia">
       <TituloStyleClimaHoje id="previsao-do-dia">Previsão do dia</TituloStyleClimaHoje>
       <ul aria-label="lista de informações do clima hoje">
+        
         <li>
           <figure>
             <ClimaImage maxWidth={ValueRemClima.rem7} src={day.condition.icon} alt="icone do clima hoje" title="icone do clima hoje" />
             <figcaption className="weather__climaHoje-description">{day.condition.text}</figcaption>
           </figure>
         </li>
+
         <li>
           <figure>
             <div>
@@ -31,6 +33,7 @@ const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
             <SpanDetalhesClimaTempoStyled className="figacaption-temp">{day.maxtemp_c}</SpanDetalhesClimaTempoStyled>
           </figure>
         </li>
+        
         <li>
           <figure>
             <div>
@@ -40,6 +43,7 @@ const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
             <SpanDetalhesClimaTempoStyled className="figacaption-temp">{day.mintemp_c}</SpanDetalhesClimaTempoStyled>
           </figure>
         </li>
+        
         <li>
           <figure>
             <div>
@@ -49,6 +53,7 @@ const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
             <SpanDetalhesClimaTempoStyled className="figacaption-WindKm">{day.maxwind_kph}</SpanDetalhesClimaTempoStyled>
           </figure>
         </li>
+        
         <li>
           <figure>
             <div>
@@ -57,7 +62,9 @@ const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
             </div>
             <SpanDetalhesClimaTempoStyled>{day.avghumidity}%</SpanDetalhesClimaTempoStyled>
           </figure>
+        
         </li>
+        
         <li>
           <figure>
             <div>
@@ -67,6 +74,7 @@ const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
             <SpanDetalhesClimaTempoStyled>{setTotalPrecipMm(day.totalprecip_mm!)}</SpanDetalhesClimaTempoStyled>
           </figure>
         </li>
+      
       </ul>
     </SecaoClimaHojeStyled>
   )

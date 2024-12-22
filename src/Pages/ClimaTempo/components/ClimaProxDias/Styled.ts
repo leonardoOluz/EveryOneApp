@@ -5,10 +5,7 @@ export const ContainerCliamaProxDiasStyled = styled.div`
   align-items: center;
   gap: 1.6rem;
   margin: 0.8rem 0;
-
-  @media screen and (max-width: 600px) {
-    gap: 0;
-  }
+  justify-content: space-between;
 `;
 
 export const SubTituloClimaProxDiasStyled = styled.h3`
@@ -25,20 +22,57 @@ export const SubTituloClimaProxDiasStyled = styled.h3`
 export const ListaClimaProxDiasStyled = styled.ul`
   display: flex;
   gap: 1.6rem;
+  width: 70%;
 
-  @media screen and (max-width: 600px) {
-    display: inline-block;
-    /* gap: 0; */
-    .hiddenComponente {
+  .hiddenComponenteItem2 {
+    display: none;
+  }
+
+  .hiddenComponenteItem3 {
+    display: none;
+  }
+
+  @media screen and (min-width: 605px) {
+    gap: 1.4rem;
+
+    .hiddenComponenteItem2 {
+      display: flex;
+    }
+  }
+
+  @media screen and (min-width: 720px) {
+    
+    .hiddenComponenteItem3 {
+      display: flex;
+    }
+  }
+
+  @media screen and (min-width: 809px) {
+    .hiddenComponenteItem3 {
+      display: none;
+    }
+    .hiddenComponenteItem2 {
       display: none;
     }
   }
+
+  @media screen and (min-width: 1285px) {
+    .hiddenComponenteItem2 {
+      display: flex;
+    }
+  }
+
+  @media screen and (min-width: 1582px) {
+    .hiddenComponenteItem3 {
+      display: flex;
+    }
+  }
+
 `;
 
 export const ItemClimaProxDiasStyled = styled.li`
   display: flex;
   align-items: center;
-  gap: 1.6rem;
 `;
 
 export const ItemFigureClimaProxDiasStyled = styled.figure`
@@ -50,6 +84,11 @@ export const ItemFigureClimaProxDiasStyled = styled.figure`
 export const FigcaptionClimaProxDiasStyled = styled.figcaption<{
   celsus?: boolean;
 }>`
-  font-size: ${({ theme }) => theme.fontSizeMedium};
+  
+  font-size: ${({ theme }) => theme.fontSizeSmall};
   ${({ celsus: gruss }) => (gruss ? "&:after {content: ' °C'}" : "")}
+  
+  @media screen and (min-width: 390px){
+    font-size: ${({ theme }) => theme.fontSizeMedium};
+  }
 `;

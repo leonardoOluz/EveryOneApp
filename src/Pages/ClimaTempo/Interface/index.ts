@@ -98,3 +98,7 @@ export interface UseScrollToItemProps {
   indexAtualHora: number | undefined;
   dados: IData | null;
 }
+export interface Breakpoint {
+  width: number;
+  slidesPerView: number;
+}
