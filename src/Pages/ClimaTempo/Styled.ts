@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import imagemFundoTempo from "../ClimaTempo/assets/ImagenClimaTempoTwo.jpg";
+import imagemFundoTempo from "../ClimaTempo/assets/estacoes/ImagenClimaTempoTwo.avif";
 import { SectionClimaStyledMix, SubTituloStyledMix } from "./Styles/StylesClima";
 
 export const MainStyled = styled.main`

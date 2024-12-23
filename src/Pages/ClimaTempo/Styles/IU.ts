@@ -1,14 +1,14 @@
 import { IImagesVariables } from "../Interface";
-import daySkyBlue from "../assets/day/skyBlue.jpg";
-import daySkyCloudy from "../assets/day/skyCloudy.jpg";
-import daySkyCloudyTotal from "../assets/day/skyCloudyTotal.jpg";
-import daySkyCloudyRainEasy from "../assets/day/skyCloudyRainEasy.jpg";
-import daySkyCloudyRainHard from "../assets/day/skyCloudyRainHard.jpg";
-import nightSkyBlueNight from "../assets/night/skyBlueNight.jpg";
-import nightSkyCloudyNight from "../assets/night/skyCloudyNight.jpg";
-import nightSkyCloudyTotalNight from "../assets/night/skyCloudyTotalNight.jpg";
-import nightSkyCloudyRainEasyNight from "../assets/night/skyCloudyRainEasyNight.jpg";
-import nightSkyCloudyRainHardNight from "../assets/night/skyCloudyRainHardNight.jpg";
+import daySkyBlue from "../assets/day/skyBlue.avif";
+import daySkyCloudy from "../assets/day/skyCloudy.avif";
+import daySkyCloudyTotal from "../assets/day/skyCloudyTotal.avif";
+import daySkyCloudyRainEasy from "../assets/day/skyCloudyRainEasy.avif";
+import daySkyCloudyRainHard from "../assets/day/skyCloudyRainHard.avif";
+import nightSkyBlueNight from "../assets/night/skyBlueNight.avif";
+import nightSkyCloudyNight from "../assets/night/skyCloudyNight.avif";
+import nightSkyCloudyTotalNight from "../assets/night/skyCloudyTotalNight.avif";
+import nightSkyCloudyRainEasyNight from "../assets/night/skyCloudyRainEasyNight.avif";
+import nightSkyCloudyRainHardNight from "../assets/night/skyCloudyRainHardNight.avif";
 
 
 export const imagesDay: IImagesVariables = {
