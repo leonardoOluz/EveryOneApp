@@ -40,8 +40,8 @@ const ClimaTempo = () => {
           <ClimaFormPesquisa />
         </SectionClimaFormPesquisa>
 
-        <SectionClimaGraficoTemp>
-          <TituloStyledGraficoTemp>Temperatura diaría</TituloStyledGraficoTemp>
+        <SectionClimaGraficoTemp aria-labelledby="temperatura-diária">
+          <TituloStyledGraficoTemp id="temperatura-diária">Temperatura diaría</TituloStyledGraficoTemp>
           <ClimaTempDiarioGrafico
             hours={dados.forecast.forecastday[1].hour}
             dataAtual={dados.location.localtime!}
