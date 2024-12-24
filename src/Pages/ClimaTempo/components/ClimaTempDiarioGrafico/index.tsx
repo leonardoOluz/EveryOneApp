@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { useLimiteHoursTemp } from "../../hooks";
 import { IHours } from "../../Interface";
-import { checkHoursAtual } from "../../utils";
+import { checkHoursAtual, setDateHour } from "../../utils";
 import ClimaTempBarraGrafica from "./ClimaTempBarraGrafico";
 import { ListaClimaTempDiarioStyled } from "./Styled";
 
@@ -14,9 +15,9 @@ const ClimaTempDiarioGrafico = ({ hours, dataAtual }: PropsClimaTempBarraGrafica
 
   return (
     <ListaClimaTempDiarioStyled>
-      {hoursLimite.map((hour, index) => (
+      {hoursLimite.map((hour) => (
         <ClimaTempBarraGrafica
-          key={index}
+          key={setDateHour(hour.time!)}
           altTemp={hour.temp_c!}
           hora={hour.time!}
           isActive={checkHoursAtual(dataAtual!, hour.time!)}
@@ -26,4 +27,4 @@ const ClimaTempDiarioGrafico = ({ hours, dataAtual }: PropsClimaTempBarraGrafica
   )
 };
 
-export default ClimaTempDiarioGrafico;
+export default memo(ClimaTempDiarioGrafico);

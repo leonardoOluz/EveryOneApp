@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 import { ClimaContainerInputButtonStyled, ClimaFormPesquisaStyled } from "./Styled";
 import { useWeatherForecastCity } from "../../hooks";
 import Loader from "../../../../components/Loader";
@@ -35,4 +35,4 @@ const ClimaFormPesquisa = () => {
 
 };
 
-export default memo(ClimaFormPesquisa)
+export default ClimaFormPesquisa
