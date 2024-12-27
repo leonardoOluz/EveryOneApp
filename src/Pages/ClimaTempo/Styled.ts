@@ -82,11 +82,3 @@ export const TituloPrincipalStyled = styled.h1`
     width: 90%;
   }
 `;
-
-export const SectionClimaGraficoTemp = styled.section`
-  ${SectionClimaStyledMix}
-`;
-
-export const TituloStyledGraficoTemp = styled.h2`
-  ${SubTituloStyledMix}
-`;

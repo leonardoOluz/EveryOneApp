@@ -1,17 +1,10 @@
 import styled from "styled-components";
+import { SectionClimaStyledMix, SubTituloStyledMix } from "../../Styles/StylesClima";
 
-export const ListaClimaTempDiarioStyled = styled.ul`
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 0.6rem;
-  box-sizing: border-box;
+export const SectionClimaGraficoTempStyled = styled.section`
+  ${SectionClimaStyledMix}
+`;
 
-  overflow-x: auto;
-
-  &::-webkit-scrollbar {
-    width: 1px;
-    opacity: 0;
-  }
+export const TituloStyledGraficoTemp = styled.h2`
+  ${SubTituloStyledMix}
 `;

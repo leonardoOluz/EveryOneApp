@@ -60,6 +60,14 @@ export const SpanDetalhesClimaTempoStyled = styled.span`
   border-radius: 0.8rem;
   font-weight: bold;
   box-sizing: border-box;
+
+  &.figacaption-temp::after {
+    content: " °C";
+  }
+  &.figacaption-WindKm::after {
+    content: " Km/h";
+    font-size: 1.6rem;
+  }
 `;
 // divisor span estiizado
 export const DivisorStyled = styled.span`

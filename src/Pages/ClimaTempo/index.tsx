@@ -1,16 +1,16 @@
 import { useContext, useRef, useState } from "react";
 import { useScrollToItem, useVerificarHoraAtual, useWeatherForecast } from "./hooks";
 import { checkHoursAtual } from "./utils";
-import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaFormPesquisa, SectionClimaGraficoTemp, SectionClimaHorasStyled, SectionClimaProxDiasStyled, TituloPrincipalStyled, TituloStyledClimaHoras, TituloStyledFormPesquisa, TituloStyledGraficoTemp, TituloStyledProxDias } from "./Styled";
+import { ContainerDivisorStyled, ListaHorasStyled, MainStyled, SectionClimaAstrosStyled, SectionClimaHorasStyled, SectionClimaProxDiasStyled, TituloPrincipalStyled, TituloStyledClimaHoras, TituloStyledProxDias } from "./Styled";
 import Loader from "../../components/Loader";
-import SectionClimaAtual from "./components/ClimaAtual";
+import SectionClimaAtual from "./components/SectionClimaAtual";
 import SectionClimaHoje from "./components/ClimaHoje";
 import ItemClimaHoras from "./components/ClimaHoras";
 import ClimaAstros from "./components/CLimaAstros";
 import ClimaProxDias from "./components/ClimaProxDias";
 import { ForecastContext } from "./Contexts/useContext";
-import ClimaFormPesquisa from "./components/ClimaFormPesquisa";
-import ClimaTempDiarioGrafico from "./components/ClimaTempDiarioGrafico";
+import SectionClimaTempDiarioGrafico from "./components/ClimaTempDiarioGrafico";
+import SectionClimaPesquisa from "./components/ClimaFormPesquisa";
 
 const ClimaTempo = () => {
   const listaRef = useRef<HTMLUListElement>(null);
@@ -35,24 +35,18 @@ const ClimaTempo = () => {
 
       <ContainerDivisorStyled>
 
-        <SectionClimaFormPesquisa aria-labelledby="formulario-busca">
-          <TituloStyledFormPesquisa id="formulario-busca">Buscar Cidade</TituloStyledFormPesquisa>
-          <ClimaFormPesquisa />
-        </SectionClimaFormPesquisa>
+        <SectionClimaPesquisa />
+        <SectionClimaTempDiarioGrafico
+          hours={dados.forecast.forecastday[1].hour}
+          dataAtual={dados.location.localtime!}
+        />
 
-        <SectionClimaGraficoTemp aria-labelledby="temperatura-diária">
-          <TituloStyledGraficoTemp id="temperatura-diária">Temperatura diaría</TituloStyledGraficoTemp>
-          <ClimaTempDiarioGrafico
-            hours={dados.forecast.forecastday[1].hour}
-            dataAtual={dados.location.localtime!}
-          />
-        </SectionClimaGraficoTemp>
-        
       </ContainerDivisorStyled>
 
       <ContainerDivisorStyled>
         <SectionClimaHoje day={dados.forecast.forecastday[1].day} />
 
+        {/* Precisar remanejar a section aqui para retirar responsabilidade */}
         <SectionClimaHorasStyled aria-labelledby="horas-titulo">
           <TituloStyledClimaHoras id="horas-titulo">Previsão das próximas horas</TituloStyledClimaHoras>
           <ListaHorasStyled ref={listaRef}>
@@ -66,6 +60,7 @@ const ClimaTempo = () => {
               }
 
               return (
+                /* Precisar refaotrr aqui */
                 <ItemClimaHoras
                   key={index}
                   hour={hour}
@@ -81,6 +76,7 @@ const ClimaTempo = () => {
 
       <ContainerDivisorStyled>
 
+        {/* Precisar remanejar a section aqui para retirar responsabilidade */}
         <SectionClimaAstrosStyled aria-labelledby="detalhes-astros">
           <ClimaAstros
             astro={dados.forecast.forecastday[1].astro}
@@ -88,6 +84,7 @@ const ClimaTempo = () => {
           />
         </SectionClimaAstrosStyled>
 
+        {/* Precisar remanejar a section aqui para retirar responsabilidade */}
         <SectionClimaProxDiasStyled aria-labelledby="proximos-dias">
           <TituloStyledProxDias id="proximos-dias">Clima dos proximos dias</TituloStyledProxDias>
           {dados.forecast.forecastday.map((forestday, index) => (
