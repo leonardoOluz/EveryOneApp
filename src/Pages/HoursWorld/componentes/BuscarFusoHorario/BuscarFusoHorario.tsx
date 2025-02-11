@@ -76,9 +76,7 @@ const BuscarFusoHorario = ({ pegarTextLocal }: IBuscaEstilizadaProps) => {
         break;
     };
   };
-
-
-
+  
   const pegarTexto = (valor: string) => {
     if (valor.length > 5) {
       pegarTextLocal(valor);

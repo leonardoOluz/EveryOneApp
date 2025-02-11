@@ -4,6 +4,7 @@ import BuscarFusoHorario from "../componentes/BuscarFusoHorario/BuscarFusoHorari
 import { Tipografia } from "../../../components/Tipografia/Tipografia";
 import Relogio from "../componentes/Relogio/Relogio";
 import { setDateHoursMinute } from "../../../utils/dateTransform";
+import Loader from "../../../components/Loader";
 
 const HorasMundialEstilizada = styled.section`
   margin: 15.4rem 0 10.3rem 0;
@@ -21,21 +22,24 @@ const HorasMundialEstilizada = styled.section`
 
 `;
 const HorasMundial = () => {
-  const { pegarTexto, getTimeZone } = useGetTimeZoneContext();
+  const { pegarTexto, getTimeZone, isLoading } = useGetTimeZoneContext();
 
-  return (
-    <HorasMundialEstilizada id="relogio">
-      <BuscarFusoHorario pegarTextLocal={pegarTexto} />
-      <div>
-        <Tipografia componente="h2" variante="h2" texto={getTimeZone.countryName} />
-        <Tipografia
-          componente="body"
-          variante="h3"
-          texto={getTimeZone.zoneName + " " + setDateHoursMinute(getTimeZone.formatted)} />
-      </div>
-      <Relogio />
-      <Tipografia componente="h2" variante="h2" texto="Relogio Mundial" />
-    </HorasMundialEstilizada>
+  return (<>
+    {isLoading && getTimeZone.countryName ? <Loader /> :
+      <HorasMundialEstilizada id="relogio">
+        <BuscarFusoHorario pegarTextLocal={pegarTexto} />
+        <div>
+          <Tipografia componente="h2" variante="h2" texto={getTimeZone.countryName} />
+          <Tipografia
+            componente="body"
+            variante="h3"
+            texto={getTimeZone.zoneName + " " + setDateHoursMinute(getTimeZone.formatted)} />
+        </div>
+        <Relogio />
+        <Tipografia componente="h2" variante="h2" texto="Relogio Mundial" />
+      </HorasMundialEstilizada>
+    }
+  </>
   )
 };
 
