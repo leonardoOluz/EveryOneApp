@@ -1,8 +1,9 @@
 import { WiSunrise, WiSunset } from "react-icons/wi";
-import { SpanDetalhesClimaTempoStyled } from "../../Styles/StylesClima";
+import { DetalhesClimaTempoStyled } from "../../Styles/StylesClima";
 import { GiEvilMoon, GiSunRadiations } from "react-icons/gi";
 import { IAstro, IDay } from "../../Interface";
 import { ContainerClimaAtrosStyled, FigcaptionClimaAstrosStyled, ItemFigureClimaAstrosStyled, ListaClimaAstrosStyled, TituloStyledClimaAstros } from "./Styled";
+import { Tipografia } from "../../../../components/Tipografia/Tipografia";
 
 interface PropsClimaDetalhes {
   astro: IAstro;
@@ -13,7 +14,7 @@ const ClimaAstros = ({ astro, day }: PropsClimaDetalhes) => {
   return (
     <>
       <TituloStyledClimaAstros id="detalhes-astros">
-        Detalhes dos Astros
+        <Tipografia componente="h2" variante="h2" texto="Detalhes dos Astros"/>
       </TituloStyledClimaAstros>
 
       <ListaClimaAstrosStyled>
@@ -23,7 +24,7 @@ const ClimaAstros = ({ astro, day }: PropsClimaDetalhes) => {
               <WiSunrise size={40} />
               <FigcaptionClimaAstrosStyled>Nascer do sol: </FigcaptionClimaAstrosStyled>
             </ContainerClimaAtrosStyled>
-            <SpanDetalhesClimaTempoStyled>{astro.sunrise}</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled>{astro.sunrise}</DetalhesClimaTempoStyled>
           </ItemFigureClimaAstrosStyled>
         </li>
 
@@ -33,7 +34,7 @@ const ClimaAstros = ({ astro, day }: PropsClimaDetalhes) => {
               <WiSunset size={40} />
               <FigcaptionClimaAstrosStyled>Pôr do sol: </FigcaptionClimaAstrosStyled>
             </ContainerClimaAtrosStyled>
-            <SpanDetalhesClimaTempoStyled>{astro.sunset}</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled>{astro.sunset}</DetalhesClimaTempoStyled>
           </ItemFigureClimaAstrosStyled>
         </li>
 
@@ -43,7 +44,7 @@ const ClimaAstros = ({ astro, day }: PropsClimaDetalhes) => {
               <GiSunRadiations size={40} />
               <FigcaptionClimaAstrosStyled>Radiação solar</FigcaptionClimaAstrosStyled>
             </ContainerClimaAtrosStyled>
-            <SpanDetalhesClimaTempoStyled>{day.uv}</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled>{day.uv}</DetalhesClimaTempoStyled>
           </ItemFigureClimaAstrosStyled>
         </li>
 
@@ -53,7 +54,7 @@ const ClimaAstros = ({ astro, day }: PropsClimaDetalhes) => {
               <GiEvilMoon size={40} />
               <FigcaptionClimaAstrosStyled>Fase lunar:</FigcaptionClimaAstrosStyled>
             </ContainerClimaAtrosStyled>
-            <SpanDetalhesClimaTempoStyled>{astro.moon_phase}</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled>{astro.moon_phase}</DetalhesClimaTempoStyled>
           </ItemFigureClimaAstrosStyled>
         </li>
 

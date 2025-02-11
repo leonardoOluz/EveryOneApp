@@ -5,4 +5,5 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "./", // Define a base URL para os arquivos estáticos
+  assetsInclude: ['**/*.json'], // Adicione esta linha
 });

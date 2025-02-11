@@ -29,7 +29,6 @@ export const ClimaImage = styled.img<{ maxWidth?: string }>`
 export const SubTituloStyledMix = css`
   margin: 1.6rem 0;
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSizeTitle};
   background-color: ${({ theme }) => theme.quinary};
   color: ${({ theme }) => theme.secondary};
   border-radius: 0.8rem;
@@ -47,26 +46,29 @@ export const AlignTemAtualMix = css`
 export const FigcaptionMixTemp = css`
   &.figcaption-temp::after {
     content: " °C";
+    font-size: ${({theme}) => theme.fontSizeMedium};
   }
 `;
-// Span estilizado
-export const SpanDetalhesClimaTempoStyled = styled.span`
+
+export const DetalhesClimaTempoStyled = styled.div`
   width: 35%;
-  text-align: left;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
   background-color: ${({ theme }) => theme.quinary};
   color: ${({ theme }) => theme.secondary};
   padding: 0 1rem;
-  font-size: ${({ theme }) => theme.fontSizeBig};
   border-radius: 0.8rem;
-  font-weight: bold;
   box-sizing: border-box;
-
+  
   &.figacaption-temp::after {
     content: " °C";
+    font-size: ${({ theme }) => theme.fontSizeMedium};
+    
   }
   &.figacaption-WindKm::after {
     content: " Km/h";
-    font-size: 1.6rem;
+    font-size: ${({ theme }) => theme.fontSizeMedium};
   }
 `;
 // divisor span estiizado

@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import imagemFundoTempo from "../ClimaTempo/assets/estacoes/ImagenClimaTempoTwo.avif";
-import { SectionClimaStyledMix, SubTituloStyledMix } from "./Styles/StylesClima";
+import {
+  SectionClimaStyledMix,
+  SubTituloStyledMix,
+} from "./Styles/StylesClima";
 
 export const MainStyled = styled.main`
+  margin-top: 11.8rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -11,6 +15,9 @@ export const MainStyled = styled.main`
   background-image: url(${imagemFundoTempo});
   background-repeat: no-repeat;
   background-size: cover;
+  @media screen and (min-width: 550px){
+    margin-top: 6.8rem;
+  }
 `;
 
 export const ContainerDivisorStyled = styled.div`
@@ -44,7 +51,7 @@ export const SectionClimaHorasStyled = styled.section`
   ${SectionClimaStyledMix}
 `;
 
-export const TituloStyledClimaHoras = styled.h2`
+export const TituloStyledClimaHoras = styled.div`
   ${SubTituloStyledMix}
 `;
 
@@ -56,7 +63,7 @@ export const SectionClimaProxDiasStyled = styled.section`
   ${SectionClimaStyledMix}
 `;
 
-export const TituloStyledProxDias = styled.h2`
+export const TituloStyledProxDias = styled.div`
   ${SubTituloStyledMix}
 `;
 
@@ -68,17 +75,16 @@ export const TituloStyledFormPesquisa = styled.h2`
   ${SubTituloStyledMix}
 `;
 
-export const TituloPrincipalStyled = styled.h1`
+export const TituloPrincipalStyled = styled.div`
   background-color: ${({ theme }) => theme.secondary};
-  font-size: ${({ theme }) => theme.fontSizeTitle};
   border-radius: 0.8rem;
   padding: 1rem;
   width: 100%;
   align-self: center;
   text-align: center;
   box-sizing: border-box;
-  
-  @media screen and (min-width: 809px){
+
+  @media screen and (min-width: 809px) {
     width: 90%;
   }
 `;

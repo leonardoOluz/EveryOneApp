@@ -5,6 +5,6 @@ export const SectionClimaGraficoTempStyled = styled.section`
   ${SectionClimaStyledMix}
 `;
 
-export const TituloStyledGraficoTemp = styled.h2`
+export const TituloStyledGraficoTemp = styled.div`
   ${SubTituloStyledMix}
 `;

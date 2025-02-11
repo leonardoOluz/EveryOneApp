@@ -37,7 +37,7 @@ const LogoSpringTrail = ({ hightBox = 2.0, widthBox = 2.0, displayDirection = "r
   return (
     <Container displayDirection={displayDirection}>
       {trail.map(({ rotateX }, i) => (
-        <Box key={i} hightBox={hightBox} widthBox={widthBox}>
+        <Box key={i} $hightBox={hightBox} $widthBox={widthBox}>
           <FrontBox
             key={items[i]}
             style={{

@@ -11,6 +11,7 @@ import ClimaProxDias from "./components/ClimaProxDias";
 import { ForecastContext } from "./Contexts/useContext";
 import SectionClimaTempDiarioGrafico from "./components/ClimaTempDiarioGrafico";
 import SectionClimaPesquisa from "./components/ClimaFormPesquisa";
+import { Tipografia } from "../../components/Tipografia/Tipografia";
 
 const ClimaTempo = () => {
   const listaRef = useRef<HTMLUListElement>(null);
@@ -28,27 +29,25 @@ const ClimaTempo = () => {
 
   return (
     <MainStyled role="main">
-
-      <TituloPrincipalStyled>Previsão do tempo</TituloPrincipalStyled>
-
+      <TituloPrincipalStyled>
+        <Tipografia componente="h1" texto="Previsão do tempo" variante="h1" />
+      </TituloPrincipalStyled>
       <SectionClimaAtual current={dados.current} image={image} location={dados.location} />
-
       <ContainerDivisorStyled>
-
         <SectionClimaPesquisa />
         <SectionClimaTempDiarioGrafico
           hours={dados.forecast.forecastday[1].hour}
           dataAtual={dados.location.localtime!}
         />
-
       </ContainerDivisorStyled>
-
       <ContainerDivisorStyled>
         <SectionClimaHoje day={dados.forecast.forecastday[1].day} />
 
-        {/* Precisar remanejar a section aqui para retirar responsabilidade */}
+        {/* Precisar remanejar a section aqui para retirar responsabilidade e inserir as tipografias*/}
         <SectionClimaHorasStyled aria-labelledby="horas-titulo">
-          <TituloStyledClimaHoras id="horas-titulo">Previsão das próximas horas</TituloStyledClimaHoras>
+          <TituloStyledClimaHoras id="horas-titulo">
+            <Tipografia componente="h2" texto="Previsão das próximas horas" variante="h2" />
+          </TituloStyledClimaHoras>
           <ListaHorasStyled ref={listaRef}>
 
             {dados.forecast.forecastday[1].hour.map((hour, index) => {
@@ -71,12 +70,10 @@ const ClimaTempo = () => {
 
           </ListaHorasStyled>
         </SectionClimaHorasStyled>
-
       </ContainerDivisorStyled>
 
       <ContainerDivisorStyled>
-
-        {/* Precisar remanejar a section aqui para retirar responsabilidade */}
+        {/* Precisar remanejar a section aqui para retirar responsabilidade e inserir as tipografias*/}
         <SectionClimaAstrosStyled aria-labelledby="detalhes-astros">
           <ClimaAstros
             astro={dados.forecast.forecastday[1].astro}
@@ -84,16 +81,16 @@ const ClimaTempo = () => {
           />
         </SectionClimaAstrosStyled>
 
-        {/* Precisar remanejar a section aqui para retirar responsabilidade */}
+        {/* Precisar remanejar a section aqui para retirar responsabilidade e inserir as tipografias*/}
         <SectionClimaProxDiasStyled aria-labelledby="proximos-dias">
-          <TituloStyledProxDias id="proximos-dias">Clima dos proximos dias</TituloStyledProxDias>
+          <TituloStyledProxDias id="proximos-dias">
+            <Tipografia componente="h2" variante="h2" texto="Clima dos proximos dias"/>
+          </TituloStyledProxDias>
           {dados.forecast.forecastday.map((forestday, index) => (
             <ClimaProxDias forestday={forestday} key={index} />
           ))}
         </SectionClimaProxDiasStyled>
-
       </ContainerDivisorStyled>
-
     </MainStyled>
   )
 };

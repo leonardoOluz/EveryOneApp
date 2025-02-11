@@ -1,3 +1,4 @@
+import { Tipografia } from "../../../../../../components/Tipografia/Tipografia";
 import { ContainerHorasTempStyled } from "./Styled";
 
 interface PropsClimaContainerHorasTemp {
@@ -5,11 +6,11 @@ interface PropsClimaContainerHorasTemp {
   temperatura: number;
 }
 
-const ClimaContainerHorasTemp = ({hora, temperatura}: PropsClimaContainerHorasTemp) => {
+const ClimaContainerHorasTemp = ({ hora, temperatura }: PropsClimaContainerHorasTemp) => {
   return (
     <ContainerHorasTempStyled>
-      <h3>{hora}h</h3>
-      <span>{temperatura}</span>
+      <Tipografia componente="h3" variante="body" texto={`${hora}h`} />
+      <Tipografia componente="body" variante="body2" texto={String(temperatura)} />
     </ContainerHorasTempStyled>
   )
 };

@@ -18,8 +18,8 @@ export const styledVariable: IVariaveis = {
   black: "#000000",
   white: "#ffffff",
   fontesFamily: {
-    primary: '"Roboto Condensed", sans-serif',
-    secundary: '"Oswald", sans-serif',
+    primary: '"Archivo Narrow", serif',
+    secundary: '"Archivo Narrow", serif',
   },
 };
 
@@ -48,3 +48,18 @@ export enum ValueRem {
   rem19 = "19rem",
   rem20 = "20rem",
 }
+
+export interface IEstilos {
+  h1: string;
+  h2: string;
+  h3: string;
+  body: string;
+  body2: string;
+};
+
+export interface IComponete {
+  h1: string;
+  h2: string;
+  h3: string;
+  body: string;
+};

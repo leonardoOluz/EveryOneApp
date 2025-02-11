@@ -1,5 +1,5 @@
 import { PiWind } from "react-icons/pi";
-import { SpanDetalhesClimaTempoStyled, ClimaImage } from "../../Styles/StylesClima";
+import { DetalhesClimaTempoStyled, ClimaImage } from "../../Styles/StylesClima";
 import { TituloStyleClimaHoje } from "./Styled";
 import { WiHumidity } from "react-icons/wi";
 import { GiWaterSplash } from "react-icons/gi";
@@ -13,6 +13,7 @@ import ClimaHojeItem from "./ClimaHojeItem";
 import ClimaHojeFigure from "./ClimaHojeFigure";
 import ClimaHojeFigcaption from "./ClimaHojeFigure/ClimaHojeFigcaption";
 import ClimaHojeContainer from "./ClimaHojeContainer";
+import { Tipografia } from "../../../../components/Tipografia/Tipografia";
 
 interface PropsClimaHoje {
   day: IDay;
@@ -20,14 +21,18 @@ interface PropsClimaHoje {
 const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
   return (
     <SectionClimaTempo ariaLabelledy="previsao-do-dia">
-      <TituloStyleClimaHoje id="previsao-do-dia">Previsão do dia</TituloStyleClimaHoje>
+      <TituloStyleClimaHoje id="previsao-do-dia">
+        <Tipografia componente="h2" variante="h2" texto="Previsão do dia" />
+      </TituloStyleClimaHoje>
 
       <ClimaHojeList aria-label="lista de informações do clima hoje">
-        
+
         <ClimaHojeItem>
           <ClimaHojeFigure>
             <ClimaImage maxWidth={ValueRemClima.rem7} src={day.condition.icon} alt="icone do clima hoje" title="icone do clima hoje" />
-            <ClimaHojeFigcaption nomeClasse="weather__climaHoje-description">{day.condition.text}</ClimaHojeFigcaption>
+            <ClimaHojeFigcaption nomeClasse="weather__climaHoje-description">
+              <Tipografia componente="body" variante="h3" texto={`${day.condition.text}`} />
+            </ClimaHojeFigcaption>
           </ClimaHojeFigure>
         </ClimaHojeItem>
 
@@ -35,53 +40,73 @@ const SectionClimaHoje = ({ day }: PropsClimaHoje) => {
           <ClimaHojeFigure>
             <ClimaHojeContainer>
               <FaTemperatureArrowUp size={35} aria-label="Icone de temperatura maxima" title="Icone de temperatura maxima" />
-              <ClimaHojeFigcaption>Temperatura Max: </ClimaHojeFigcaption>
+              <ClimaHojeFigcaption>
+                <Tipografia componente="body" variante="body" texto="Temperatura Max: " />
+              </ClimaHojeFigcaption>
             </ClimaHojeContainer>
-            <SpanDetalhesClimaTempoStyled className="figacaption-temp">{day.maxtemp_c}</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled className="figacaption-temp">
+              <Tipografia componente="body" variante="body" texto={String(day.maxtemp_c)} />
+            </DetalhesClimaTempoStyled>
           </ClimaHojeFigure>
         </ClimaHojeItem>
-        
+
         <ClimaHojeItem>
           <ClimaHojeFigure>
             <ClimaHojeContainer>
               <FaTemperatureArrowDown size={35} title="Icone de temperatura minima" aria-label="Icone de temperatura minima" />
-              <ClimaHojeFigcaption>Temperatura Min: </ClimaHojeFigcaption>
+              <ClimaHojeFigcaption>
+                <Tipografia componente="body" variante="body" texto="Temperatura Min: " />
+              </ClimaHojeFigcaption>
             </ClimaHojeContainer>
-            <SpanDetalhesClimaTempoStyled className="figacaption-temp">{day.mintemp_c}</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled className="figacaption-temp">
+              <Tipografia componente="body" variante="body" texto={String(day.mintemp_c)} />
+            </DetalhesClimaTempoStyled>
           </ClimaHojeFigure>
         </ClimaHojeItem>
-        
+
         <ClimaHojeItem>
           <ClimaHojeFigure>
             <ClimaHojeContainer>
               <PiWind size={35} title="Icone do vento" aria-label="icone do vento" />
-              <ClimaHojeFigcaption>Vento maximo: </ClimaHojeFigcaption>
+              <ClimaHojeFigcaption>
+                <Tipografia componente="body" variante="body" texto="Vento maximo: " />
+              </ClimaHojeFigcaption>
             </ClimaHojeContainer>
-            <SpanDetalhesClimaTempoStyled className="figacaption-WindKm">{day.maxwind_kph}</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled className="figacaption-WindKm">
+              <Tipografia componente="body" variante="body" texto={String(day.maxwind_kph)} />
+            </DetalhesClimaTempoStyled>
           </ClimaHojeFigure>
         </ClimaHojeItem>
-        
+
         <ClimaHojeItem>
           <ClimaHojeFigure>
             <ClimaHojeContainer>
               <WiHumidity size={35} title="Icone da umidade" aria-label="Icone da umidade" />
-              <ClimaHojeFigcaption>Umidade do ar: </ClimaHojeFigcaption>
+              <ClimaHojeFigcaption>
+                <Tipografia componente="body" variante="body" texto="Umidade do ar: " />
+              </ClimaHojeFigcaption>
             </ClimaHojeContainer>
-            <SpanDetalhesClimaTempoStyled>{day.avghumidity}%</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled>
+              <Tipografia componente="body" variante="body" texto={`${day.avghumidity} %`} />
+            </DetalhesClimaTempoStyled>
           </ClimaHojeFigure>
-        
+
         </ClimaHojeItem>
-        
+
         <ClimaHojeItem>
           <ClimaHojeFigure>
             <ClimaHojeContainer>
               <GiWaterSplash size={35} title="Icone da precipitação da chuva" aria-label="Icone da precipitação da chuva" />
-              <ClimaHojeFigcaption>Precipitação de chuva: </ClimaHojeFigcaption>
+              <ClimaHojeFigcaption>
+                <Tipografia componente="body" variante="body" texto="Precipitação de chuva: " />
+              </ClimaHojeFigcaption>
             </ClimaHojeContainer>
-            <SpanDetalhesClimaTempoStyled>{setTotalPrecipMm(day.totalprecip_mm!)}</SpanDetalhesClimaTempoStyled>
+            <DetalhesClimaTempoStyled>
+              <Tipografia componente="body" variante="body" texto={setTotalPrecipMm(day.totalprecip_mm!)} />
+            </DetalhesClimaTempoStyled>
           </ClimaHojeFigure>
         </ClimaHojeItem>
-      
+
       </ClimaHojeList>
 
     </SectionClimaTempo>

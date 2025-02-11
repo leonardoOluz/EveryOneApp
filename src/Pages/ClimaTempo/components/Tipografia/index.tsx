@@ -27,9 +27,6 @@ export const SubTituloStyledMix = css`
   border-radius: 0.8rem;
 `;
 
-
-
-
 /* Tipografia Clima Atual */
 
 // Sub-titulo do clima-atual

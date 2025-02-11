@@ -1,32 +1,49 @@
-import { useContext, useEffect, useState } from "react";
-import { IsDark, HeaderStyled } from "./Styles";
+import { useContext, useState } from "react";
+import { HeaderStyled } from "./Styles";
 import LogoSpringTrail from "../LogoSpringTrail";
 import { ThemeContext } from "../../Pages/ClimaTempo/Contexts/useContext";
 import { MdLightMode } from "react-icons/md";
+import Navbar from "./Navbar/Navbar";
+import { Link } from "react-router-dom";
+import Botao from "../Botao/Botao";
+import MenuHamburguer from "../Botao/MenuHamburguer/MenuHamburguer";
+import useWindowSize from "../../hooks/useWindowSize";
 
 const HeaderMain = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const { isDarkMode, setIsDarkMode } = useContext(ThemeContext)
+  const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
+  const [menuSuspenso, setMenuSuspenso] = useState<boolean>(false);
+  const width = useWindowSize();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   return (
-    <HeaderStyled
-      showheader={isScrolled}
-    >
-      <LogoSpringTrail />
-      <IsDark htmlFor="checkbox-darkmode" aria-label="botão de troca de tema" >
-        <input id="checkbox-darkmode" type="checkbox" onChange={() => setIsDarkMode(!isDarkMode)} />
-        <MdLightMode size={24} />
-      </IsDark>
+    <HeaderStyled>
+      <Link to="/">
+        <LogoSpringTrail hightBox={3.5} widthBox={1.9} />
+      </Link>
+      {width < 550 &&
+        <Botao
+          tipoButton="secundario"
+          ariaLabel="botao-menu-suspenso"
+          titulo="botao-menu-suspenso"
+          tipo="button"
+          id="menu-suspenso"
+          onClick={() => setMenuSuspenso(!menuSuspenso)}
+        >
+          <MenuHamburguer
+            selection={menuSuspenso ? "aberto" : "fechado"}
+          />
+        </Botao>
+      }
+      <Navbar menuSuspenso={menuSuspenso} setMenuSuspenso={setMenuSuspenso} />
+      <Botao
+        tipoButton="primario"
+        ariaLabel="botão de troca de tema"
+        titulo="botão de troca de tema"
+        id="darkmode"
+        tipo="button"
+        onClick={() => setIsDarkMode(!isDarkMode)} >
+        <MdLightMode size={30} />
+      </Botao>
     </HeaderStyled>
   )
 }

@@ -20,3 +20,8 @@ export interface IVariaveis {
     secundary: string;
   };
 }
+
+export interface ILinksNavbar {
+  to: string;
+  texto: string;
+}
