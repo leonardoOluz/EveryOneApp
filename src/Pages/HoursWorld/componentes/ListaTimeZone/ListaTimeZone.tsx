@@ -48,11 +48,16 @@ const ListaTimeZone = ({ checkLista, focoAtivo }: IListaTimeZoneProps) => {
     };
   };
 
+  const handleClick = (textoZone: string) => {
+    pegarTextInput(textoZone);
+    limparListTimeZone();
+  }
+
   return (<ListaEstilizada>
     {zones.map((item, index) => (
       <ItemEstilizado
         $isAtivo={focoAtivo === index}
-        onClick={() => pegarTextInput(item.zoneName)}
+        onClick={() => handleClick(item.zoneName)}
         key={index}
         tabIndex={0}
         onKeyDown={e => handleOnKeyDown(e, item.zoneName)}
