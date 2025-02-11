@@ -10,8 +10,8 @@ const useApiWeather = () => {
     },
   });
 
-  const getWeatherForecastLatLong = (latitude: number, longetude: number) => {
-    return httpWeather.get("/forecast.json", {
+  const getWeatherForecastLatLong = async (latitude: number, longetude: number) => {
+    return await httpWeather.get("/forecast.json", {
       params: {
         q: `${latitude},${longetude}`,
         lang: "pt",
@@ -20,8 +20,8 @@ const useApiWeather = () => {
     });
   };
 
-  const getWeatherForecastCity = (city: string) => {
-    return httpWeather.get("/forecast.json", {
+  const getWeatherForecastCity = async (city: string) => {
+    return await httpWeather.get("/forecast.json", {
       params: {
         q: city,
         lang: "pt",

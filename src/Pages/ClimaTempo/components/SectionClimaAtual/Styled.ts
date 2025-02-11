@@ -36,15 +36,6 @@ export const ContainerTituloLocalStyled = styled.div`
     align-items: flex-start;
   }
 `;
-/* Criado o sub-titulo no tipografia */
-export const SubTituloStyled = styled.h2`
-  font-size: ${({ theme }) => theme.fontSizeTitle};
-  box-sizing: border-box;
-`;
-/* Criado o texto no tipografia */
-export const TextoStilizado = styled.p`
-  font-size: ${({ theme }) => theme.fontSizeBig};
-`;
 
 export const ContainerWeatherNow = styled.div<{ textColor: boolean }>`
   display: flex;

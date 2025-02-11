@@ -31,7 +31,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-  font-family: ${styledVariable.fontesFamily.secundary};
+  font-family: ${styledVariable.fontesFamily.primary};
   font-optical-sizing: auto;
   font-style: normal;
   font-weight: 400;
@@ -62,8 +62,7 @@ export const MainPerson = css`
   display: flex;
   z-index: 1;
   background-color: ${({ theme }) => theme.secondary};
-  box-shadow: 0.4rem 0.4rem 1rem rgba(0, 0, 0, 0.5);
-  transition: transform 0.4s ease-in-out;
+  
   @media screen and (max-width: 768px) {
     padding: 3.2rem 1.6rem;
   }

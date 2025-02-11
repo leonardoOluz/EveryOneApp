@@ -1,30 +1,23 @@
-import { memo } from "react";
-import { useLimiteHoursTemp } from "../../hooks";
+import { SectionClimaGraficoTempStyled, TituloStyledGraficoTemp } from "./Styled";
+import ClimaTempDiarioGraficoLista from "./ClimaTempListaGrafico"
 import { IHours } from "../../Interface";
-import { checkHoursAtual, setDateHour } from "../../utils";
-import ClimaTempBarraGrafica from "./ClimaTempBarraGrafico";
-import { ListaClimaTempDiarioStyled } from "./Styled";
+import { Tipografia } from "../../../../components/Tipografia/Tipografia";
 
-interface PropsClimaTempBarraGrafica {
+interface PropsSectionClimaTempDiarioGrafico {
   hours: IHours[]
   dataAtual: Date
 }
 
-const ClimaTempDiarioGrafico = ({ hours, dataAtual }: PropsClimaTempBarraGrafica) => {
-  const hoursLimite = useLimiteHoursTemp(hours, dataAtual);  
+const SectionClimaTempDiarioGrafico = ({ dataAtual, hours }: PropsSectionClimaTempDiarioGrafico) => {
 
   return (
-    <ListaClimaTempDiarioStyled>
-      {hoursLimite.map((hour) => (
-        <ClimaTempBarraGrafica
-          key={setDateHour(hour.time!)}
-          altTemp={hour.temp_c!}
-          hora={hour.time!}
-          isActive={checkHoursAtual(dataAtual!, hour.time!)}
-        />
-      ))}
-    </ListaClimaTempDiarioStyled>
+    <SectionClimaGraficoTempStyled>
+      <TituloStyledGraficoTemp id="temperatura-diária">
+        <Tipografia componente="h2" variante="h2" texto="Temperatura diária" />
+      </TituloStyledGraficoTemp>
+      <ClimaTempDiarioGraficoLista dataAtual={dataAtual} hours={hours} />
+    </SectionClimaGraficoTempStyled>
   )
 };
 
-export default memo(ClimaTempDiarioGrafico);
+export default SectionClimaTempDiarioGrafico;

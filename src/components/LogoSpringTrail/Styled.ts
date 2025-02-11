@@ -11,10 +11,10 @@ export const Container = styled.div<{displayDirection: string}>`
   }
 `;
 
-export const Box = styled.div<{ widthBox: number; hightBox: number }>`
+export const Box = styled.div<{ $widthBox: number; $hightBox: number }>`
   position: relative;
-  height: ${({ hightBox: h }) => `${h}rem`};
-  width: ${({ widthBox: w }) => `${w}rem`};
+  height: ${({ $hightBox: h }) => `${h}rem`};
+  width: ${({ $widthBox: w }) => `${w}rem`};
 `;
 
 export const SharedStyles = css`

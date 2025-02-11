@@ -25,6 +25,6 @@ export const FigcaptionClimaAstrosStyled = styled.figcaption`
   font-size: ${({ theme }) => theme.fontSizeMedium};
 `;
 
-export const TituloStyledClimaAstros = styled.h2`
+export const TituloStyledClimaAstros = styled.div`
   ${SubTituloStyledMix}
 `;
