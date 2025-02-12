@@ -25,7 +25,7 @@ const HorasMundial = () => {
   const { pegarTexto, getTimeZone, isLoading } = useGetTimeZoneContext();
 
   return (<>
-    {isLoading && getTimeZone.countryName ? <Loader /> :
+    {isLoading || !getTimeZone.countryName ? <Loader /> :
       <HorasMundialEstilizada id="relogio">
         <BuscarFusoHorario pegarTextLocal={pegarTexto} />
         <div>
