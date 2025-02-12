@@ -4,38 +4,24 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 const useTimeZoneDB = () => {
   const httpTimeZoneDb = axios.create({
-    baseURL: "http://api.timezonedb.com",
-  });
-
-  const getTimeZoneDb = async (zone: string) => {
-    try {
-      return await httpTimeZoneDb.get<IGetTimezone>("/v2.1/get-time-zone",
-        {
-          params: {
-            key: "7772XBAZLGSM",
-            format: "json",
-            by: "zone",
-            zone,
-          }
-        }
-      )
-    } catch (error) {
-      console.error(error);
+    baseURL: "https://api.timezonedb.com",
+    params: {
+      key: "7772XBAZLGSM",
+      format: "json",
     }
+  });
+  const getTimeZoneDb = async (zone: string) => {
+    return await httpTimeZoneDb.get<IGetTimezone>("/v2.1/get-time-zone",
+      {
+        params: {
+          by: "zone",
+          zone,
+        }
+      }
+    )
   };
   const getListTimeZonesDb = async () => {
-    try {
-      return await httpTimeZoneDb.get<IListTimeZone>("/v2.1/list-time-zone",
-        {
-          params: {
-            key: "7772XBAZLGSM",
-            format: "json",
-          }
-        }
-      )
-    } catch (error) {
-      console.error(error);
-    }
+    return await httpTimeZoneDb.get<IListTimeZone>("/v2.1/list-time-zone");
   };
 
   return {
@@ -51,7 +37,7 @@ export const useReactQueryTimeZoneDB = (zone: string): UseQueryResult<{ data: IG
     queryFn: () => getTimeZoneDb(zone),
   })
 };
-export const useReactQueryListTimeZoneDB = (): UseQueryResult<{data: IListTimeZone}> => {
+export const useReactQueryListTimeZoneDB = (): UseQueryResult<{ data: IListTimeZone }> => {
   const { getListTimeZonesDb } = useTimeZoneDB();
   return useQuery({
     queryKey: ["listTimeZone"],
