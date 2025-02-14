@@ -3,6 +3,7 @@ import Lista from "../../Lista/Lista";
 import Item from "../../Lista/Item/Item";
 import { Link, useLocation, } from "react-router-dom";
 import { ILinksNavbar } from "../../../Interfaces/IVariaveis";
+import { widthMobile } from "../../../styles/IU";
 
 const NavStyled = styled.nav<{ $isSuspenso: boolean }>`
     position: absolute;
@@ -13,10 +14,11 @@ const NavStyled = styled.nav<{ $isSuspenso: boolean }>`
     
     ${({ $isSuspenso }) =>
     $isSuspenso
-      ? "transform: translateY(0);"
-      : "transform: translateY(-250%);"}
+      ? "display: flex;"
+      : "display: none;"}
    
-   @media screen and (min-width: 550px){
+   @media screen and (min-width: ${widthMobile.css}){
+      display: flex;
       position: static;
       transform: translateY(0);
       background-color: transparent;

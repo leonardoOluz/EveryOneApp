@@ -1,12 +1,12 @@
 import styled from "styled-components";
+import { widthMobile } from "../../../styles/IU";
 
 const ItemStyled = styled.li<{ $isAtivo: boolean }>`
   width: 100%;
   text-align: center;
   font-size: ${({ theme }) => theme.fontSizeBig};
   box-sizing: border-box;
-  padding: 0 1rem;
-  transition: transform 0.2s ease-in-out;
+  padding: 1rem 0;
   border-bottom: 1px solid ${({ theme }) => theme.quinary};  
   ${({ $isAtivo }) => $isAtivo ? `font-weight: 800;` : `font-weight: 300;`}
   
@@ -15,7 +15,7 @@ const ItemStyled = styled.li<{ $isAtivo: boolean }>`
     text-decoration: none;
   }
   
-  @media screen and (min-width: 550px){
+  @media screen and (min-width: ${widthMobile.css}){
     width: auto;
     border: none;
     a {

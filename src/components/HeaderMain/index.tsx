@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Botao from "../Botao/Botao";
 import MenuHamburguer from "../Botao/MenuHamburguer/MenuHamburguer";
 import useWindowSize from "../../hooks/useWindowSize";
+import { widthMobile } from "../../styles/IU";
 
 const HeaderMain = () => {
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
@@ -20,7 +21,7 @@ const HeaderMain = () => {
       <Link to="/">
         <LogoSpringTrail hightBox={3.5} widthBox={1.9} />
       </Link>
-      {width < 550 &&
+      {width < widthMobile.nb &&
         <Botao
           tipoButton="secundario"
           ariaLabel="botao-menu-suspenso"

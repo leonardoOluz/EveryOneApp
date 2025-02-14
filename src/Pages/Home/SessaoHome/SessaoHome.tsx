@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { widthMobile } from "../../../styles/IU";
 
 const SessaoHome = styled.section`
   padding: 13.5rem 0 2rem 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   gap: 2rem;
   background-color: ${({ theme }) => theme.primary};
@@ -18,6 +19,7 @@ const SessaoHome = styled.section`
     padding: 1.5rem;
     color: ${({ theme }) => theme.quinary};
     transition: transform 200ms ease-in-out;
+
     .lottieReact {
       max-width: 12rem;
       max-height: 12rem;
@@ -34,6 +36,11 @@ const SessaoHome = styled.section`
       }
     }
   }
+  
+  @media screen and (min-width: ${widthMobile.css}){
+    flex-direction: row;
+    flex-wrap: wrap;
+  } 
 `;
 
 export default SessaoHome;
