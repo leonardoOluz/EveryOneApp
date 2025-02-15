@@ -1,5 +1,9 @@
 import { IVariaveis } from "../Interfaces/IVariaveis";
 
+export const widthMobile = {
+  css: "678px", nb: 678
+};
+
 export const styledVariable: IVariaveis = {
   colorsBlue: {
     primary: "#0d1321",
@@ -22,7 +26,6 @@ export const styledVariable: IVariaveis = {
     secundary: '"Archivo Narrow", serif',
   },
 };
-
 export enum ValueRem {
   rem1 = "1rem",
   rem1n6 = "1.6rem",
@@ -32,8 +35,7 @@ export enum ValueRem {
   rem3n2 = "3.2rem",
   rem4 = "4rem",
   rem5 = "5rem",
-  rem6 = "6rem",
-  rem7 = "7rem",
+  rem6 = "6rem",  rem7 = "7rem",
   rem8 = "8rem",
   rem9 = "9rem",
   rem10 = "10rem",
@@ -47,8 +49,7 @@ export enum ValueRem {
   rem18 = "18rem",
   rem19 = "19rem",
   rem20 = "20rem",
-}
-
+};
 export interface IEstilos {
   h1: string;
   h2: string;
@@ -56,7 +57,6 @@ export interface IEstilos {
   body: string;
   body2: string;
 };
-
 export interface IComponete {
   h1: string;
   h2: string;

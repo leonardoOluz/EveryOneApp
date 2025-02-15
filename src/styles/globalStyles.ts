@@ -58,7 +58,7 @@ export const MainPerson = css`
   position: fixed;
   left: 0;
   right: 0;
-  padding: 3.2rem;
+  padding: 1.2rem;
   display: flex;
   z-index: 1;
   background-color: ${({ theme }) => theme.secondary};
