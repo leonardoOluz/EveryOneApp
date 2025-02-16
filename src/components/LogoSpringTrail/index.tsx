@@ -30,7 +30,7 @@ const LogoSpringTrail = ({ hightBox = 2.0, widthBox = 2.0, displayDirection = "r
         })
         setIsFlipped(true)
       }
-    }, 4500)
+    }, 2500)
     return () => clearInterval(interval)
   }, [api, isFlipped])
 

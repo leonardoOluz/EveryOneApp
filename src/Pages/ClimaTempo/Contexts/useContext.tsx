@@ -38,7 +38,7 @@ ThemeContext.displayName = "ThemeContext";
 ForecastContext.displayName = "ForecastContext";
 
 export const ThemeProvider = ({ children }: IChildrenContext) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
