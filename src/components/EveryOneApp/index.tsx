@@ -2,11 +2,11 @@ import LogoSpringTrail from "../LogoSpringTrail";
 import { EveryOneAppStyled } from "./Styled";
 
 const EveryOneApp = () => {
-    return (
-        <EveryOneAppStyled>
-            <LogoSpringTrail hightBox={45} widthBox={45} displayDirection="column"/>
-        </EveryOneAppStyled>       
-    )
-}
+  return (
+    <EveryOneAppStyled>
+      <LogoSpringTrail hightBox={3.5} widthBox={1.9} />
+    </EveryOneAppStyled>
+  );
+};
 
 export default EveryOneApp;
