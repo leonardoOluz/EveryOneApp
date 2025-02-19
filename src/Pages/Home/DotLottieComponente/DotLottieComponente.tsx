@@ -18,7 +18,7 @@ const DotLottieComponente = ({ animantion, toPath, texto }: IDotLottieComponente
         className="lottieReact"
         src={animantion}
         loop={false}
-        autoplay={true}
+        autoplay={false}
         dotLottieRefCallback={setDotLottie}
         onMouseEnter={() => dotLottie?.play()}
         onMouseLeave={() => dotLottie?.pause()}
