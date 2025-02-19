@@ -1,12 +1,12 @@
 import { Suspense } from "react"
-import Loader from "../Loader";
+import EveryOneApp from "../EveryOneApp";
 
 interface ISuspenseLazyProps {
     children: React.ReactNode
 }
 
 const SuspenseLazy = ({children}: ISuspenseLazyProps) => {
-    return <Suspense children={children}  fallback={<Loader/>}/>
+    return <Suspense children={children}  fallback={<EveryOneApp />}/>
 };
 
 export default SuspenseLazy;
